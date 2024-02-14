@@ -1,0 +1,38 @@
+import { AttendeeCreateNestedManyWithoutBookingsInput } from "./AttendeeCreateNestedManyWithoutBookingsInput";
+import { InputJsonValue } from "../../types";
+import { DailyEventReferenceWhereUniqueInput } from "../dailyEventReference/DailyEventReferenceWhereUniqueInput";
+import { DestinationCalendarWhereUniqueInput } from "../destinationCalendar/DestinationCalendarWhereUniqueInput";
+import { EventTypeWhereUniqueInput } from "../eventType/EventTypeWhereUniqueInput";
+import { PaymentCreateNestedManyWithoutBookingsInput } from "./PaymentCreateNestedManyWithoutBookingsInput";
+import { BookingReferenceCreateNestedManyWithoutBookingsInput } from "./BookingReferenceCreateNestedManyWithoutBookingsInput";
+import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { WorkflowReminderCreateNestedManyWithoutBookingsInput } from "./WorkflowReminderCreateNestedManyWithoutBookingsInput";
+
+export type BookingCreateInput = {
+  attendees?: AttendeeCreateNestedManyWithoutBookingsInput;
+  cancellationReason?: string | null;
+  customInputs?: InputJsonValue;
+  dailyRef?: DailyEventReferenceWhereUniqueInput | null;
+  description?: string | null;
+  destinationCalendar?: DestinationCalendarWhereUniqueInput | null;
+  dynamicEventSlugRef?: string | null;
+  dynamicGroupSlugRef?: string | null;
+  endTime: Date;
+  eventType?: EventTypeWhereUniqueInput | null;
+  fromReschedule?: string | null;
+  location?: string | null;
+  paid: boolean;
+  payment?: PaymentCreateNestedManyWithoutBookingsInput;
+  recurringEventId?: string | null;
+  references?: BookingReferenceCreateNestedManyWithoutBookingsInput;
+  rejectionReason?: string | null;
+  rescheduled?: boolean | null;
+  smsReminderNumber?: string | null;
+  startTime: Date;
+  status: "CANCELLED" | "ACCEPTED" | "REJECTED" | "PENDING";
+  title: string;
+  uid: string;
+  updatedAt?: Date | null;
+  user?: UserWhereUniqueInput | null;
+  workflowReminders?: WorkflowReminderCreateNestedManyWithoutBookingsInput;
+};
