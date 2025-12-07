@@ -19,21 +19,19 @@ export const ScheduleCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="availability"
-          reference="Availability"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={AvailabilityTitle} />
+        <ReferenceArrayInput source="availability" reference="Availability">
+          <SelectArrayInput
+            optionText={AvailabilityTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
-        <ReferenceArrayInput
-          source="eventType"
-          reference="EventType"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={EventTypeTitle} />
+        <ReferenceArrayInput source="eventType" reference="EventType">
+          <SelectArrayInput
+            optionText={EventTypeTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Name" source="name" />
         <TextInput label="Time Zone" source="timeZone" />

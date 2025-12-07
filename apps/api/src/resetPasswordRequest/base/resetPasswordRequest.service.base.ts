@@ -10,50 +10,43 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ResetPasswordRequest } from "@prisma/client";
+import {
+  Prisma,
+  ResetPasswordRequest as PrismaResetPasswordRequest,
+} from "@prisma/client";
 
 export class ResetPasswordRequestServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.ResetPasswordRequestCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ResetPasswordRequestCountArgs>
+  async count(
+    args: Omit<Prisma.ResetPasswordRequestCountArgs, "select">
   ): Promise<number> {
     return this.prisma.resetPasswordRequest.count(args);
   }
 
-  async resetPasswordRequests<
-    T extends Prisma.ResetPasswordRequestFindManyArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.ResetPasswordRequestFindManyArgs>
-  ): Promise<ResetPasswordRequest[]> {
+  async resetPasswordRequests(
+    args: Prisma.ResetPasswordRequestFindManyArgs
+  ): Promise<PrismaResetPasswordRequest[]> {
     return this.prisma.resetPasswordRequest.findMany(args);
   }
-  async resetPasswordRequest<
-    T extends Prisma.ResetPasswordRequestFindUniqueArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.ResetPasswordRequestFindUniqueArgs>
-  ): Promise<ResetPasswordRequest | null> {
+  async resetPasswordRequest(
+    args: Prisma.ResetPasswordRequestFindUniqueArgs
+  ): Promise<PrismaResetPasswordRequest | null> {
     return this.prisma.resetPasswordRequest.findUnique(args);
   }
-  async createResetPasswordRequest<
-    T extends Prisma.ResetPasswordRequestCreateArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.ResetPasswordRequestCreateArgs>
-  ): Promise<ResetPasswordRequest> {
-    return this.prisma.resetPasswordRequest.create<T>(args);
+  async createResetPasswordRequest(
+    args: Prisma.ResetPasswordRequestCreateArgs
+  ): Promise<PrismaResetPasswordRequest> {
+    return this.prisma.resetPasswordRequest.create(args);
   }
-  async updateResetPasswordRequest<
-    T extends Prisma.ResetPasswordRequestUpdateArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.ResetPasswordRequestUpdateArgs>
-  ): Promise<ResetPasswordRequest> {
-    return this.prisma.resetPasswordRequest.update<T>(args);
+  async updateResetPasswordRequest(
+    args: Prisma.ResetPasswordRequestUpdateArgs
+  ): Promise<PrismaResetPasswordRequest> {
+    return this.prisma.resetPasswordRequest.update(args);
   }
-  async deleteResetPasswordRequest<
-    T extends Prisma.ResetPasswordRequestDeleteArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.ResetPasswordRequestDeleteArgs>
-  ): Promise<ResetPasswordRequest> {
+  async deleteResetPasswordRequest(
+    args: Prisma.ResetPasswordRequestDeleteArgs
+  ): Promise<PrismaResetPasswordRequest> {
     return this.prisma.resetPasswordRequest.delete(args);
   }
 }

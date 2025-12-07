@@ -13,51 +13,51 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  Credential, // @ts-ignore
-  DestinationCalendar, // @ts-ignore
-  AppModel, // @ts-ignore
-  User,
+  Credential as PrismaCredential,
+  DestinationCalendar as PrismaDestinationCalendar,
+  AppModel as PrismaAppModel,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class CredentialServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.CredentialCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CredentialCountArgs>
+  async count(
+    args: Omit<Prisma.CredentialCountArgs, "select">
   ): Promise<number> {
     return this.prisma.credential.count(args);
   }
 
-  async credentials<T extends Prisma.CredentialFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CredentialFindManyArgs>
-  ): Promise<Credential[]> {
+  async credentials(
+    args: Prisma.CredentialFindManyArgs
+  ): Promise<PrismaCredential[]> {
     return this.prisma.credential.findMany(args);
   }
-  async credential<T extends Prisma.CredentialFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CredentialFindUniqueArgs>
-  ): Promise<Credential | null> {
+  async credential(
+    args: Prisma.CredentialFindUniqueArgs
+  ): Promise<PrismaCredential | null> {
     return this.prisma.credential.findUnique(args);
   }
-  async createCredential<T extends Prisma.CredentialCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CredentialCreateArgs>
-  ): Promise<Credential> {
-    return this.prisma.credential.create<T>(args);
+  async createCredential(
+    args: Prisma.CredentialCreateArgs
+  ): Promise<PrismaCredential> {
+    return this.prisma.credential.create(args);
   }
-  async updateCredential<T extends Prisma.CredentialUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CredentialUpdateArgs>
-  ): Promise<Credential> {
-    return this.prisma.credential.update<T>(args);
+  async updateCredential(
+    args: Prisma.CredentialUpdateArgs
+  ): Promise<PrismaCredential> {
+    return this.prisma.credential.update(args);
   }
-  async deleteCredential<T extends Prisma.CredentialDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.CredentialDeleteArgs>
-  ): Promise<Credential> {
+  async deleteCredential(
+    args: Prisma.CredentialDeleteArgs
+  ): Promise<PrismaCredential> {
     return this.prisma.credential.delete(args);
   }
 
   async findDestinationCalendars(
     parentId: number,
     args: Prisma.DestinationCalendarFindManyArgs
-  ): Promise<DestinationCalendar[]> {
+  ): Promise<PrismaDestinationCalendar[]> {
     return this.prisma.credential
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -65,7 +65,7 @@ export class CredentialServiceBase {
       .destinationCalendars(args);
   }
 
-  async getAppField(parentId: number): Promise<AppModel | null> {
+  async getAppField(parentId: number): Promise<PrismaAppModel | null> {
     return this.prisma.credential
       .findUnique({
         where: { id: parentId },
@@ -73,7 +73,7 @@ export class CredentialServiceBase {
       .appField();
   }
 
-  async getUser(parentId: number): Promise<User | null> {
+  async getUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.credential
       .findUnique({
         where: { id: parentId },

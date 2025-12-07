@@ -13,47 +13,47 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  Membership, // @ts-ignore
-  Team, // @ts-ignore
-  User,
+  Membership as PrismaMembership,
+  Team as PrismaTeam,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class MembershipServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.MembershipCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.MembershipCountArgs>
+  async count(
+    args: Omit<Prisma.MembershipCountArgs, "select">
   ): Promise<number> {
     return this.prisma.membership.count(args);
   }
 
-  async memberships<T extends Prisma.MembershipFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.MembershipFindManyArgs>
-  ): Promise<Membership[]> {
+  async memberships(
+    args: Prisma.MembershipFindManyArgs
+  ): Promise<PrismaMembership[]> {
     return this.prisma.membership.findMany(args);
   }
-  async membership<T extends Prisma.MembershipFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.MembershipFindUniqueArgs>
-  ): Promise<Membership | null> {
+  async membership(
+    args: Prisma.MembershipFindUniqueArgs
+  ): Promise<PrismaMembership | null> {
     return this.prisma.membership.findUnique(args);
   }
-  async createMembership<T extends Prisma.MembershipCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.MembershipCreateArgs>
-  ): Promise<Membership> {
-    return this.prisma.membership.create<T>(args);
+  async createMembership(
+    args: Prisma.MembershipCreateArgs
+  ): Promise<PrismaMembership> {
+    return this.prisma.membership.create(args);
   }
-  async updateMembership<T extends Prisma.MembershipUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.MembershipUpdateArgs>
-  ): Promise<Membership> {
-    return this.prisma.membership.update<T>(args);
+  async updateMembership(
+    args: Prisma.MembershipUpdateArgs
+  ): Promise<PrismaMembership> {
+    return this.prisma.membership.update(args);
   }
-  async deleteMembership<T extends Prisma.MembershipDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.MembershipDeleteArgs>
-  ): Promise<Membership> {
+  async deleteMembership(
+    args: Prisma.MembershipDeleteArgs
+  ): Promise<PrismaMembership> {
     return this.prisma.membership.delete(args);
   }
 
-  async getTeam(parentId: number): Promise<Team | null> {
+  async getTeam(parentId: number): Promise<PrismaTeam | null> {
     return this.prisma.membership
       .findUnique({
         where: { id: parentId },
@@ -61,7 +61,7 @@ export class MembershipServiceBase {
       .team();
   }
 
-  async getUser(parentId: number): Promise<User | null> {
+  async getUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.membership
       .findUnique({
         where: { id: parentId },

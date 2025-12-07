@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Admin, DataProvider, Resource } from "react-admin";
-import buildGraphQLProvider from "./data-provider/graphqlDataProvider";
+import dataProvider from "./data-provider/graphqlDataProvider";
 import { theme } from "./theme/theme";
 import Login from "./Login";
 import "./App.scss";
@@ -125,22 +125,13 @@ import { WorkflowReminderList } from "./workflowReminder/WorkflowReminderList";
 import { WorkflowReminderCreate } from "./workflowReminder/WorkflowReminderCreate";
 import { WorkflowReminderEdit } from "./workflowReminder/WorkflowReminderEdit";
 import { WorkflowReminderShow } from "./workflowReminder/WorkflowReminderShow";
+import { FdfdList } from "./fdfd/FdfdList";
+import { FdfdCreate } from "./fdfd/FdfdCreate";
+import { FdfdEdit } from "./fdfd/FdfdEdit";
+import { FdfdShow } from "./fdfd/FdfdShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
-  const [dataProvider, setDataProvider] = useState<DataProvider | null>(null);
-  useEffect(() => {
-    buildGraphQLProvider
-      .then((provider: any) => {
-        setDataProvider(() => provider);
-      })
-      .catch((error: any) => {
-        console.log(error);
-      });
-  }, []);
-  if (!dataProvider) {
-    return <div>Loading</div>;
-  }
   return (
     <div className="App">
       <Admin
@@ -360,6 +351,13 @@ const App = (): React.ReactElement => {
           edit={WorkflowReminderEdit}
           create={WorkflowReminderCreate}
           show={WorkflowReminderShow}
+        />
+        <Resource
+          name="Fdfd"
+          list={FdfdList}
+          edit={FdfdEdit}
+          create={FdfdCreate}
+          show={FdfdShow}
         />
       </Admin>
     </div>

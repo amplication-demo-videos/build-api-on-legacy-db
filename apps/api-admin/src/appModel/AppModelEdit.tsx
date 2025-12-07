@@ -17,13 +17,12 @@ export const AppModelEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="apiKey"
-          reference="ApiKey"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={ApiKeyTitle} />
+        <ReferenceArrayInput source="apiKey" reference="ApiKey">
+          <SelectArrayInput
+            optionText={ApiKeyTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <SelectArrayInput
           label="Categories"
@@ -39,23 +38,21 @@ export const AppModelEdit = (props: EditProps): React.ReactElement => {
           optionText="label"
           optionValue="value"
         />
-        <ReferenceArrayInput
-          source="credentials"
-          reference="Credential"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={CredentialTitle} />
+        <ReferenceArrayInput source="credentials" reference="Credential">
+          <SelectArrayInput
+            optionText={CredentialTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Dir Name" source="dirName" />
         <div />
-        <ReferenceArrayInput
-          source="webhook"
-          reference="Webhook"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={WebhookTitle} />
+        <ReferenceArrayInput source="webhook" reference="Webhook">
+          <SelectArrayInput
+            optionText={WebhookTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>

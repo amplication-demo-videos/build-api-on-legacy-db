@@ -13,12 +13,11 @@ export const HashedLinkList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"HashedLinks"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField
           label="Event Type"
           source="eventtype.id"
@@ -27,7 +26,7 @@ export const HashedLinkList = (props: ListProps): React.ReactElement => {
           <TextField source={EVENTTYPE_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="ID" source="id" />
-        <TextField label="Link" source="link" />
+        <TextField label="Link" source="link" />{" "}
       </Datagrid>
     </List>
   );

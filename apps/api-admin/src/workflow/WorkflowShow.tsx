@@ -31,7 +31,7 @@ export const WorkflowShow = (props: ShowProps): React.ReactElement => {
           target="workflowId"
           label="WorkflowsOnEventTypes"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Event Type"
               source="eventtype.id"
@@ -54,7 +54,7 @@ export const WorkflowShow = (props: ShowProps): React.ReactElement => {
           target="workflowId"
           label="WorkflowSteps"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <TextField label="Action" source="action" />
             <TextField label="Email Subject" source="emailSubject" />
             <TextField label="ID" source="id" />

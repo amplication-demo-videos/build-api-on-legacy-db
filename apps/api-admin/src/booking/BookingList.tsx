@@ -20,12 +20,11 @@ export const BookingList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"Bookings"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="Cancellation Reason" source="cancellationReason" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Custom Inputs" source="customInputs" />
@@ -75,7 +74,7 @@ export const BookingList = (props: ListProps): React.ReactElement => {
         <TextField label="Updated At" source="updatedAt" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

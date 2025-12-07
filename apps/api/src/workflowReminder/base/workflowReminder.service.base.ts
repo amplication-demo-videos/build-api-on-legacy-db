@@ -13,47 +13,47 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  WorkflowReminder, // @ts-ignore
-  Booking, // @ts-ignore
-  WorkflowStep,
+  WorkflowReminder as PrismaWorkflowReminder,
+  Booking as PrismaBooking,
+  WorkflowStep as PrismaWorkflowStep,
 } from "@prisma/client";
 
 export class WorkflowReminderServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.WorkflowReminderCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowReminderCountArgs>
+  async count(
+    args: Omit<Prisma.WorkflowReminderCountArgs, "select">
   ): Promise<number> {
     return this.prisma.workflowReminder.count(args);
   }
 
-  async workflowReminders<T extends Prisma.WorkflowReminderFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowReminderFindManyArgs>
-  ): Promise<WorkflowReminder[]> {
+  async workflowReminders(
+    args: Prisma.WorkflowReminderFindManyArgs
+  ): Promise<PrismaWorkflowReminder[]> {
     return this.prisma.workflowReminder.findMany(args);
   }
-  async workflowReminder<T extends Prisma.WorkflowReminderFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowReminderFindUniqueArgs>
-  ): Promise<WorkflowReminder | null> {
+  async workflowReminder(
+    args: Prisma.WorkflowReminderFindUniqueArgs
+  ): Promise<PrismaWorkflowReminder | null> {
     return this.prisma.workflowReminder.findUnique(args);
   }
-  async createWorkflowReminder<T extends Prisma.WorkflowReminderCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowReminderCreateArgs>
-  ): Promise<WorkflowReminder> {
-    return this.prisma.workflowReminder.create<T>(args);
+  async createWorkflowReminder(
+    args: Prisma.WorkflowReminderCreateArgs
+  ): Promise<PrismaWorkflowReminder> {
+    return this.prisma.workflowReminder.create(args);
   }
-  async updateWorkflowReminder<T extends Prisma.WorkflowReminderUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowReminderUpdateArgs>
-  ): Promise<WorkflowReminder> {
-    return this.prisma.workflowReminder.update<T>(args);
+  async updateWorkflowReminder(
+    args: Prisma.WorkflowReminderUpdateArgs
+  ): Promise<PrismaWorkflowReminder> {
+    return this.prisma.workflowReminder.update(args);
   }
-  async deleteWorkflowReminder<T extends Prisma.WorkflowReminderDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowReminderDeleteArgs>
-  ): Promise<WorkflowReminder> {
+  async deleteWorkflowReminder(
+    args: Prisma.WorkflowReminderDeleteArgs
+  ): Promise<PrismaWorkflowReminder> {
     return this.prisma.workflowReminder.delete(args);
   }
 
-  async getBooking(parentId: number): Promise<Booking | null> {
+  async getBooking(parentId: number): Promise<PrismaBooking | null> {
     return this.prisma.workflowReminder
       .findUnique({
         where: { id: parentId },
@@ -61,7 +61,7 @@ export class WorkflowReminderServiceBase {
       .booking();
   }
 
-  async getWorkflowStep(parentId: number): Promise<WorkflowStep | null> {
+  async getWorkflowStep(parentId: number): Promise<PrismaWorkflowStep | null> {
     return this.prisma.workflowReminder
       .findUnique({
         where: { id: parentId },

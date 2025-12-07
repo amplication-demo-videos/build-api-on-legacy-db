@@ -15,12 +15,11 @@ export const WorkflowReminderList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"WorkflowReminders"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField label="Booking" source="booking.id" reference="Booking">
           <TextField source={BOOKING_TITLE_FIELD} />
         </ReferenceField>
@@ -35,7 +34,7 @@ export const WorkflowReminderList = (props: ListProps): React.ReactElement => {
           reference="WorkflowStep"
         >
           <TextField source={WORKFLOWSTEP_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

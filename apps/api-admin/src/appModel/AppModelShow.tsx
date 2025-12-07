@@ -27,7 +27,7 @@ export const AppModelShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Keys" source="keys" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField reference="ApiKey" target="appId" label="ApiKeys">
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="App Field"
               source="appmodel.id"
@@ -51,7 +51,7 @@ export const AppModelShow = (props: ShowProps): React.ReactElement => {
           target="appId"
           label="Credentials"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="App Field"
               source="appmodel.id"
@@ -68,7 +68,7 @@ export const AppModelShow = (props: ShowProps): React.ReactElement => {
           </Datagrid>
         </ReferenceManyField>
         <ReferenceManyField reference="Webhook" target="appId" label="Webhooks">
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <BooleanField label="Active" source="active" />
             <ReferenceField
               label="App Field"

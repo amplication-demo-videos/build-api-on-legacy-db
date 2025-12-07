@@ -16,7 +16,9 @@ import {
   ValidateNested,
   IsOptional,
   IsString,
+  MaxLength,
   IsInt,
+  Max,
   IsEnum,
 } from "class-validator";
 import { Type } from "class-transformer";
@@ -44,6 +46,7 @@ class WorkflowUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -67,6 +70,7 @@ class WorkflowUpdateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,

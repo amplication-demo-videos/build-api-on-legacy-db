@@ -10,49 +10,46 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
-  Feedback, // @ts-ignore
-  User,
+  Feedback as PrismaFeedback,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class FeedbackServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.FeedbackCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.FeedbackCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.FeedbackCountArgs, "select">): Promise<number> {
     return this.prisma.feedback.count(args);
   }
 
-  async feedbacks<T extends Prisma.FeedbackFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.FeedbackFindManyArgs>
-  ): Promise<Feedback[]> {
+  async feedbacks(
+    args: Prisma.FeedbackFindManyArgs
+  ): Promise<PrismaFeedback[]> {
     return this.prisma.feedback.findMany(args);
   }
-  async feedback<T extends Prisma.FeedbackFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.FeedbackFindUniqueArgs>
-  ): Promise<Feedback | null> {
+  async feedback(
+    args: Prisma.FeedbackFindUniqueArgs
+  ): Promise<PrismaFeedback | null> {
     return this.prisma.feedback.findUnique(args);
   }
-  async createFeedback<T extends Prisma.FeedbackCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.FeedbackCreateArgs>
-  ): Promise<Feedback> {
-    return this.prisma.feedback.create<T>(args);
+  async createFeedback(
+    args: Prisma.FeedbackCreateArgs
+  ): Promise<PrismaFeedback> {
+    return this.prisma.feedback.create(args);
   }
-  async updateFeedback<T extends Prisma.FeedbackUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.FeedbackUpdateArgs>
-  ): Promise<Feedback> {
-    return this.prisma.feedback.update<T>(args);
+  async updateFeedback(
+    args: Prisma.FeedbackUpdateArgs
+  ): Promise<PrismaFeedback> {
+    return this.prisma.feedback.update(args);
   }
-  async deleteFeedback<T extends Prisma.FeedbackDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.FeedbackDeleteArgs>
-  ): Promise<Feedback> {
+  async deleteFeedback(
+    args: Prisma.FeedbackDeleteArgs
+  ): Promise<PrismaFeedback> {
     return this.prisma.feedback.delete(args);
   }
 
-  async getUser(parentId: number): Promise<User | null> {
+  async getUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.feedback
       .findUnique({
         where: { id: parentId },

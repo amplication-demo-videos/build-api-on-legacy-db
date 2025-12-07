@@ -10,49 +10,38 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
-  Payment, // @ts-ignore
-  Booking,
+  Payment as PrismaPayment,
+  Booking as PrismaBooking,
 } from "@prisma/client";
 
 export class PaymentServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.PaymentCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.PaymentCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.PaymentCountArgs, "select">): Promise<number> {
     return this.prisma.payment.count(args);
   }
 
-  async payments<T extends Prisma.PaymentFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.PaymentFindManyArgs>
-  ): Promise<Payment[]> {
+  async payments(args: Prisma.PaymentFindManyArgs): Promise<PrismaPayment[]> {
     return this.prisma.payment.findMany(args);
   }
-  async payment<T extends Prisma.PaymentFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.PaymentFindUniqueArgs>
-  ): Promise<Payment | null> {
+  async payment(
+    args: Prisma.PaymentFindUniqueArgs
+  ): Promise<PrismaPayment | null> {
     return this.prisma.payment.findUnique(args);
   }
-  async createPayment<T extends Prisma.PaymentCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.PaymentCreateArgs>
-  ): Promise<Payment> {
-    return this.prisma.payment.create<T>(args);
+  async createPayment(args: Prisma.PaymentCreateArgs): Promise<PrismaPayment> {
+    return this.prisma.payment.create(args);
   }
-  async updatePayment<T extends Prisma.PaymentUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.PaymentUpdateArgs>
-  ): Promise<Payment> {
-    return this.prisma.payment.update<T>(args);
+  async updatePayment(args: Prisma.PaymentUpdateArgs): Promise<PrismaPayment> {
+    return this.prisma.payment.update(args);
   }
-  async deletePayment<T extends Prisma.PaymentDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.PaymentDeleteArgs>
-  ): Promise<Payment> {
+  async deletePayment(args: Prisma.PaymentDeleteArgs): Promise<PrismaPayment> {
     return this.prisma.payment.delete(args);
   }
 
-  async getBooking(parentId: number): Promise<Booking | null> {
+  async getBooking(parentId: number): Promise<PrismaBooking | null> {
     return this.prisma.payment
       .findUnique({
         where: { id: parentId },

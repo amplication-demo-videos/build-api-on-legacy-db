@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsInt, ValidateNested } from "class-validator";
+import { IsString, MaxLength, IsInt, ValidateNested } from "class-validator";
 import { User } from "../../user/base/User";
 import { Type } from "class-transformer";
 
@@ -22,6 +22,7 @@ class SelectedCalendar {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   externalId!: string;
 
@@ -38,6 +39,7 @@ class SelectedCalendar {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   integration!: string;
 

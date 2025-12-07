@@ -32,7 +32,7 @@ export const TeamShow = (props: ShowProps): React.ReactElement => {
           target="teamId"
           label="EventTypes"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <TextField label="After Event Buffer" source="afterEventBuffer" />
             <TextField label="Before Event Buffer" source="beforeEventBuffer" />
             <TextField label="Currency" source="currency" />
@@ -109,7 +109,7 @@ export const TeamShow = (props: ShowProps): React.ReactElement => {
           target="teamId"
           label="Memberships"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <BooleanField label="Accepted" source="accepted" />
             <TextField label="ID" source="id" />
             <TextField label="Role" source="role" />

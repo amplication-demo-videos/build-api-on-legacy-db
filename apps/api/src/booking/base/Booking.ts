@@ -12,15 +12,18 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { Attendee } from "../../attendee/base/Attendee";
+
 import {
   ValidateNested,
   IsOptional,
   IsString,
+  MaxLength,
   IsDate,
   IsInt,
   IsBoolean,
   IsEnum,
 } from "class-validator";
+
 import { Type } from "class-transformer";
 import { IsJSONValue } from "../../validators";
 import { GraphQLJSON } from "graphql-type-json";
@@ -50,6 +53,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -88,6 +92,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -108,6 +113,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -119,6 +125,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -147,6 +154,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -166,6 +174,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -194,6 +203,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -214,6 +224,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -236,6 +247,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -265,6 +277,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   title!: string;
 
@@ -273,6 +286,7 @@ class Booking {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   uid!: string;
 

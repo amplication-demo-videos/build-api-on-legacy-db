@@ -13,63 +13,51 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  User, // @ts-ignore
-  Account, // @ts-ignore
-  ApiKey, // @ts-ignore
-  Availability, // @ts-ignore
-  Booking, // @ts-ignore
-  Credential, // @ts-ignore
-  EventType, // @ts-ignore
-  Feedback, // @ts-ignore
-  Impersonation, // @ts-ignore
-  Schedule, // @ts-ignore
-  SelectedCalendar, // @ts-ignore
-  Session, // @ts-ignore
-  Membership, // @ts-ignore
-  Webhook, // @ts-ignore
-  Workflow, // @ts-ignore
-  DestinationCalendar,
+  User as PrismaUser,
+  Account as PrismaAccount,
+  ApiKey as PrismaApiKey,
+  Availability as PrismaAvailability,
+  Booking as PrismaBooking,
+  Credential as PrismaCredential,
+  EventType as PrismaEventType,
+  Feedback as PrismaFeedback,
+  Impersonation as PrismaImpersonation,
+  Schedule as PrismaSchedule,
+  SelectedCalendar as PrismaSelectedCalendar,
+  Session as PrismaSession,
+  Membership as PrismaMembership,
+  Webhook as PrismaWebhook,
+  Workflow as PrismaWorkflow,
+  DestinationCalendar as PrismaDestinationCalendar,
 } from "@prisma/client";
 
 export class UserServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.UserCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.UserCountArgs, "select">): Promise<number> {
     return this.prisma.user.count(args);
   }
 
-  async users<T extends Prisma.UserFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserFindManyArgs>
-  ): Promise<User[]> {
+  async users(args: Prisma.UserFindManyArgs): Promise<PrismaUser[]> {
     return this.prisma.user.findMany(args);
   }
-  async user<T extends Prisma.UserFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserFindUniqueArgs>
-  ): Promise<User | null> {
+  async user(args: Prisma.UserFindUniqueArgs): Promise<PrismaUser | null> {
     return this.prisma.user.findUnique(args);
   }
-  async createUser<T extends Prisma.UserCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserCreateArgs>
-  ): Promise<User> {
-    return this.prisma.user.create<T>(args);
+  async createUser(args: Prisma.UserCreateArgs): Promise<PrismaUser> {
+    return this.prisma.user.create(args);
   }
-  async updateUser<T extends Prisma.UserUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserUpdateArgs>
-  ): Promise<User> {
-    return this.prisma.user.update<T>(args);
+  async updateUser(args: Prisma.UserUpdateArgs): Promise<PrismaUser> {
+    return this.prisma.user.update(args);
   }
-  async deleteUser<T extends Prisma.UserDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.UserDeleteArgs>
-  ): Promise<User> {
+  async deleteUser(args: Prisma.UserDeleteArgs): Promise<PrismaUser> {
     return this.prisma.user.delete(args);
   }
 
   async findAccounts(
     parentId: number,
     args: Prisma.AccountFindManyArgs
-  ): Promise<Account[]> {
+  ): Promise<PrismaAccount[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -80,7 +68,7 @@ export class UserServiceBase {
   async findApiKeys(
     parentId: number,
     args: Prisma.ApiKeyFindManyArgs
-  ): Promise<ApiKey[]> {
+  ): Promise<PrismaApiKey[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -91,7 +79,7 @@ export class UserServiceBase {
   async findAvailability(
     parentId: number,
     args: Prisma.AvailabilityFindManyArgs
-  ): Promise<Availability[]> {
+  ): Promise<PrismaAvailability[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -102,7 +90,7 @@ export class UserServiceBase {
   async findBookings(
     parentId: number,
     args: Prisma.BookingFindManyArgs
-  ): Promise<Booking[]> {
+  ): Promise<PrismaBooking[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -113,7 +101,7 @@ export class UserServiceBase {
   async findCredentials(
     parentId: number,
     args: Prisma.CredentialFindManyArgs
-  ): Promise<Credential[]> {
+  ): Promise<PrismaCredential[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -124,7 +112,7 @@ export class UserServiceBase {
   async findEventTypes(
     parentId: number,
     args: Prisma.EventTypeFindManyArgs
-  ): Promise<EventType[]> {
+  ): Promise<PrismaEventType[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -135,7 +123,7 @@ export class UserServiceBase {
   async findFeedback(
     parentId: number,
     args: Prisma.FeedbackFindManyArgs
-  ): Promise<Feedback[]> {
+  ): Promise<PrismaFeedback[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -146,7 +134,7 @@ export class UserServiceBase {
   async findImpersonatedBy(
     parentId: number,
     args: Prisma.ImpersonationFindManyArgs
-  ): Promise<Impersonation[]> {
+  ): Promise<PrismaImpersonation[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -157,7 +145,7 @@ export class UserServiceBase {
   async findImpersonatedUsers(
     parentId: number,
     args: Prisma.ImpersonationFindManyArgs
-  ): Promise<Impersonation[]> {
+  ): Promise<PrismaImpersonation[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -168,7 +156,7 @@ export class UserServiceBase {
   async findSchedules(
     parentId: number,
     args: Prisma.ScheduleFindManyArgs
-  ): Promise<Schedule[]> {
+  ): Promise<PrismaSchedule[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -179,7 +167,7 @@ export class UserServiceBase {
   async findSelectedCalendars(
     parentId: number,
     args: Prisma.SelectedCalendarFindManyArgs
-  ): Promise<SelectedCalendar[]> {
+  ): Promise<PrismaSelectedCalendar[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -190,7 +178,7 @@ export class UserServiceBase {
   async findSessions(
     parentId: number,
     args: Prisma.SessionFindManyArgs
-  ): Promise<Session[]> {
+  ): Promise<PrismaSession[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -201,7 +189,7 @@ export class UserServiceBase {
   async findTeams(
     parentId: number,
     args: Prisma.MembershipFindManyArgs
-  ): Promise<Membership[]> {
+  ): Promise<PrismaMembership[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -212,7 +200,7 @@ export class UserServiceBase {
   async findWebhooks(
     parentId: number,
     args: Prisma.WebhookFindManyArgs
-  ): Promise<Webhook[]> {
+  ): Promise<PrismaWebhook[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -223,7 +211,7 @@ export class UserServiceBase {
   async findWorkflows(
     parentId: number,
     args: Prisma.WorkflowFindManyArgs
-  ): Promise<Workflow[]> {
+  ): Promise<PrismaWorkflow[]> {
     return this.prisma.user
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -233,7 +221,7 @@ export class UserServiceBase {
 
   async getDestinationCalendar(
     parentId: number
-  ): Promise<DestinationCalendar | null> {
+  ): Promise<PrismaDestinationCalendar | null> {
     return this.prisma.user
       .findUnique({
         where: { id: parentId },

@@ -6,18 +6,17 @@ export const AppModelList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"AppModels"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="Categories" source="categories" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Dir Name" source="dirName" />
         <TextField label="ID" source="id" />
         <TextField label="Keys" source="keys" />
-        <DateField source="updatedAt" label="Updated At" />
+        <DateField source="updatedAt" label="Updated At" />{" "}
       </Datagrid>
     </List>
   );

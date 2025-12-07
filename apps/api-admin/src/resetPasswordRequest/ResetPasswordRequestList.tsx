@@ -8,17 +8,16 @@ export const ResetPasswordRequestList = (
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"ResetPasswordRequests"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <DateField source="createdAt" label="Created At" />
         <TextField label="Email" source="email" />
         <TextField label="Expires" source="expires" />
         <TextField label="ID" source="id" />
-        <DateField source="updatedAt" label="Updated At" />
+        <DateField source="updatedAt" label="Updated At" />{" "}
       </Datagrid>
     </List>
   );

@@ -55,10 +55,12 @@ export const WorkflowStepEdit = (props: EditProps): React.ReactElement => {
         <ReferenceArrayInput
           source="workflowReminders"
           reference="WorkflowReminder"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={WorkflowReminderTitle} />
+          <SelectArrayInput
+            optionText={WorkflowReminderTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>

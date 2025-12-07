@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { EventType } from "../../eventType/base/EventType";
-import { ValidateNested, IsInt, IsString } from "class-validator";
+import { ValidateNested, IsInt, IsString, MaxLength } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -38,6 +38,7 @@ class HashedLink {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   link!: string;
 }

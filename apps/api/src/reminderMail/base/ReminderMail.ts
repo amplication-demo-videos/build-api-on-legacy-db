@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsInt, IsEnum } from "class-validator";
+import { IsDate, IsInt, Max, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
 import { EnumReminderMailReminderType } from "./EnumReminderMailReminderType";
 
@@ -30,6 +30,7 @@ class ReminderMail {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   elapsedMinutes!: number;
 
@@ -46,6 +47,7 @@ class ReminderMail {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   referenceId!: number;
 

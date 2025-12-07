@@ -16,12 +16,11 @@ export const WorkflowsOnEventTypeList = (
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"WorkflowsOnEventTypes"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField
           label="Event Type"
           source="eventtype.id"
@@ -36,7 +35,7 @@ export const WorkflowsOnEventTypeList = (
           reference="Workflow"
         >
           <TextField source={WORKFLOW_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

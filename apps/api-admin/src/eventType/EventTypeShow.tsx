@@ -94,7 +94,7 @@ export const EventTypeShow = (props: ShowProps): React.ReactElement => {
           target="eventTypeId"
           label="Availabilities"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <TextField label="Date" source="date" />
             <TextField label="Days" source="days" />
             <TextField label="End Time" source="endTime" />
@@ -124,7 +124,7 @@ export const EventTypeShow = (props: ShowProps): React.ReactElement => {
           target="eventTypeId"
           label="Bookings"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <TextField
               label="Cancellation Reason"
               source="cancellationReason"
@@ -185,7 +185,7 @@ export const EventTypeShow = (props: ShowProps): React.ReactElement => {
           target="eventTypeId"
           label="EventTypeCustomInputs"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Event Type"
               source="eventtype.id"
@@ -205,7 +205,7 @@ export const EventTypeShow = (props: ShowProps): React.ReactElement => {
           target="eventTypeId"
           label="Webhooks"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <BooleanField label="Active" source="active" />
             <ReferenceField
               label="App Field"
@@ -237,7 +237,7 @@ export const EventTypeShow = (props: ShowProps): React.ReactElement => {
           target="eventTypeId"
           label="WorkflowsOnEventTypes"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Event Type"
               source="eventtype.id"

@@ -13,51 +13,49 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  AppModel, // @ts-ignore
-  ApiKey, // @ts-ignore
-  Credential, // @ts-ignore
-  Webhook,
+  AppModel as PrismaAppModel,
+  ApiKey as PrismaApiKey,
+  Credential as PrismaCredential,
+  Webhook as PrismaWebhook,
 } from "@prisma/client";
 
 export class AppModelServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.AppModelCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AppModelCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.AppModelCountArgs, "select">): Promise<number> {
     return this.prisma.appModel.count(args);
   }
 
-  async appModels<T extends Prisma.AppModelFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AppModelFindManyArgs>
-  ): Promise<AppModel[]> {
+  async appModels(
+    args: Prisma.AppModelFindManyArgs
+  ): Promise<PrismaAppModel[]> {
     return this.prisma.appModel.findMany(args);
   }
-  async appModel<T extends Prisma.AppModelFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AppModelFindUniqueArgs>
-  ): Promise<AppModel | null> {
+  async appModel(
+    args: Prisma.AppModelFindUniqueArgs
+  ): Promise<PrismaAppModel | null> {
     return this.prisma.appModel.findUnique(args);
   }
-  async createAppModel<T extends Prisma.AppModelCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AppModelCreateArgs>
-  ): Promise<AppModel> {
-    return this.prisma.appModel.create<T>(args);
+  async createAppModel(
+    args: Prisma.AppModelCreateArgs
+  ): Promise<PrismaAppModel> {
+    return this.prisma.appModel.create(args);
   }
-  async updateAppModel<T extends Prisma.AppModelUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AppModelUpdateArgs>
-  ): Promise<AppModel> {
-    return this.prisma.appModel.update<T>(args);
+  async updateAppModel(
+    args: Prisma.AppModelUpdateArgs
+  ): Promise<PrismaAppModel> {
+    return this.prisma.appModel.update(args);
   }
-  async deleteAppModel<T extends Prisma.AppModelDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AppModelDeleteArgs>
-  ): Promise<AppModel> {
+  async deleteAppModel(
+    args: Prisma.AppModelDeleteArgs
+  ): Promise<PrismaAppModel> {
     return this.prisma.appModel.delete(args);
   }
 
   async findApiKey(
     parentId: string,
     args: Prisma.ApiKeyFindManyArgs
-  ): Promise<ApiKey[]> {
+  ): Promise<PrismaApiKey[]> {
     return this.prisma.appModel
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -68,7 +66,7 @@ export class AppModelServiceBase {
   async findCredentials(
     parentId: string,
     args: Prisma.CredentialFindManyArgs
-  ): Promise<Credential[]> {
+  ): Promise<PrismaCredential[]> {
     return this.prisma.appModel
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -79,7 +77,7 @@ export class AppModelServiceBase {
   async findWebhook(
     parentId: string,
     args: Prisma.WebhookFindManyArgs
-  ): Promise<Webhook[]> {
+  ): Promise<PrismaWebhook[]> {
     return this.prisma.appModel
       .findUniqueOrThrow({
         where: { id: parentId },

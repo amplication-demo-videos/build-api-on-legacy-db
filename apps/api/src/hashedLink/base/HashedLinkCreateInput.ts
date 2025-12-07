@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { EventTypeWhereUniqueInput } from "../../eventType/base/EventTypeWhereUniqueInput";
-import { ValidateNested, IsString } from "class-validator";
+import { ValidateNested, IsString, MaxLength } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -31,6 +31,7 @@ class HashedLinkCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   link!: string;
 }

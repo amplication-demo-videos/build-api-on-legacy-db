@@ -13,12 +13,11 @@ export const WorkflowStepList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"WorkflowSteps"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="Action" source="action" />
         <TextField label="Email Subject" source="emailSubject" />
         <TextField label="ID" source="id" />
@@ -32,7 +31,7 @@ export const WorkflowStepList = (props: ListProps): React.ReactElement => {
           reference="Workflow"
         >
           <TextField source={WORKFLOW_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

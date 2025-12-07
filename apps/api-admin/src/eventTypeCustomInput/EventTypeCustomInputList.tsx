@@ -16,12 +16,11 @@ export const EventTypeCustomInputList = (
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"EventTypeCustomInputs"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField
           label="Event Type"
           source="eventtype.id"
@@ -33,7 +32,7 @@ export const EventTypeCustomInputList = (
         <TextField label="Label" source="label" />
         <TextField label="Placeholder" source="placeholder" />
         <BooleanField label="Required" source="required" />
-        <TextField label="Type" source="type" />
+        <TextField label="Type" source="type" />{" "}
       </Datagrid>
     </List>
   );

@@ -19,12 +19,11 @@ export const WebhookList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"Webhooks"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <BooleanField label="Active" source="active" />
         <ReferenceField
           label="App Field"
@@ -48,7 +47,7 @@ export const WebhookList = (props: ListProps): React.ReactElement => {
         <TextField label="Subscriber Url" source="subscriberUrl" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

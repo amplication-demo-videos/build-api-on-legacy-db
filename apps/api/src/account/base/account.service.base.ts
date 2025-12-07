@@ -10,49 +10,38 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
-  Account, // @ts-ignore
-  User,
+  Account as PrismaAccount,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class AccountServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.AccountCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AccountCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.AccountCountArgs, "select">): Promise<number> {
     return this.prisma.account.count(args);
   }
 
-  async accounts<T extends Prisma.AccountFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AccountFindManyArgs>
-  ): Promise<Account[]> {
+  async accounts(args: Prisma.AccountFindManyArgs): Promise<PrismaAccount[]> {
     return this.prisma.account.findMany(args);
   }
-  async account<T extends Prisma.AccountFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AccountFindUniqueArgs>
-  ): Promise<Account | null> {
+  async account(
+    args: Prisma.AccountFindUniqueArgs
+  ): Promise<PrismaAccount | null> {
     return this.prisma.account.findUnique(args);
   }
-  async createAccount<T extends Prisma.AccountCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AccountCreateArgs>
-  ): Promise<Account> {
-    return this.prisma.account.create<T>(args);
+  async createAccount(args: Prisma.AccountCreateArgs): Promise<PrismaAccount> {
+    return this.prisma.account.create(args);
   }
-  async updateAccount<T extends Prisma.AccountUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AccountUpdateArgs>
-  ): Promise<Account> {
-    return this.prisma.account.update<T>(args);
+  async updateAccount(args: Prisma.AccountUpdateArgs): Promise<PrismaAccount> {
+    return this.prisma.account.update(args);
   }
-  async deleteAccount<T extends Prisma.AccountDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AccountDeleteArgs>
-  ): Promise<Account> {
+  async deleteAccount(args: Prisma.AccountDeleteArgs): Promise<PrismaAccount> {
     return this.prisma.account.delete(args);
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async getUser(parentId: string): Promise<PrismaUser | null> {
     return this.prisma.account
       .findUnique({
         where: { id: parentId },

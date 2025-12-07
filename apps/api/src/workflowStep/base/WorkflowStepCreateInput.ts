@@ -15,8 +15,10 @@ import { EnumWorkflowStepAction } from "./EnumWorkflowStepAction";
 import {
   IsEnum,
   IsString,
+  MaxLength,
   IsOptional,
   IsInt,
+  Max,
   ValidateNested,
 } from "class-validator";
 import { EnumWorkflowStepTemplate } from "./EnumWorkflowStepTemplate";
@@ -39,6 +41,7 @@ class WorkflowStepCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -50,6 +53,7 @@ class WorkflowStepCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -61,6 +65,7 @@ class WorkflowStepCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -72,6 +77,7 @@ class WorkflowStepCreateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   stepNumber!: number;
 

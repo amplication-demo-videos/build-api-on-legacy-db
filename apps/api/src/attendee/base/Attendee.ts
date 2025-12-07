@@ -12,7 +12,13 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { Booking } from "../../booking/base/Booking";
-import { ValidateNested, IsOptional, IsString, IsInt } from "class-validator";
+import {
+  ValidateNested,
+  IsOptional,
+  IsString,
+  MaxLength,
+  IsInt,
+} from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -31,6 +37,7 @@ class Attendee {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   email!: string;
 
@@ -47,6 +54,7 @@ class Attendee {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -58,6 +66,7 @@ class Attendee {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   name!: string;
 
@@ -66,6 +75,7 @@ class Attendee {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   timeZone!: string;
 }

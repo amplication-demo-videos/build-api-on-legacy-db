@@ -11,7 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsInt, ValidateNested } from "class-validator";
+import {
+  IsDate,
+  IsOptional,
+  IsInt,
+  Max,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { EventType } from "../../eventType/base/EventType";
 import { Schedule } from "../../schedule/base/Schedule";
@@ -35,6 +41,7 @@ class Availability {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   days!: number;
 

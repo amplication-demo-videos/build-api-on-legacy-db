@@ -11,7 +11,14 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt, ValidateNested } from "class-validator";
+import {
+  IsString,
+  MaxLength,
+  IsOptional,
+  IsInt,
+  Max,
+  ValidateNested,
+} from "class-validator";
 import { User } from "../../user/base/User";
 import { Type } from "class-transformer";
 
@@ -22,6 +29,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -33,6 +41,7 @@ class Account {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -52,6 +61,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -63,6 +73,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   provider!: string;
 
@@ -71,6 +82,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   providerAccountId!: string;
 
@@ -79,6 +91,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -90,6 +103,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -101,6 +115,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -112,6 +127,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -123,6 +139,7 @@ class Account {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   typeField!: string;
 

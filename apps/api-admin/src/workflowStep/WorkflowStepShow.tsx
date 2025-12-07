@@ -38,7 +38,7 @@ export const WorkflowStepShow = (props: ShowProps): React.ReactElement => {
           target="workflowStepId"
           label="WorkflowReminders"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Booking"
               source="booking.id"

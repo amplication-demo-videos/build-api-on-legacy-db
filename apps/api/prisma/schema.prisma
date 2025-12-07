@@ -452,6 +452,12 @@ model WorkflowReminder {
   workflowStepId Int
 }
 
+model Fdfd {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+}
+
 enum EnumEventTypePeriodType {
   UNLIMITED
   ROLLING

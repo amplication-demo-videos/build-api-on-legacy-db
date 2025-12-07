@@ -12,15 +12,18 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { Booking } from "../../booking/base/Booking";
+
 import {
   ValidateNested,
   IsOptional,
   IsInt,
   IsEnum,
   IsString,
+  MaxLength,
   IsBoolean,
   IsDate,
 } from "class-validator";
+
 import { Type } from "class-transformer";
 import { EnumWorkflowReminderMethod } from "./EnumWorkflowReminderMethod";
 import { WorkflowStep } from "../../workflowStep/base/WorkflowStep";
@@ -59,6 +62,7 @@ class WorkflowReminder {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,

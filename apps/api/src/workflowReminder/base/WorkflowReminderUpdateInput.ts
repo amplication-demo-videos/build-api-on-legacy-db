@@ -17,6 +17,7 @@ import {
   IsOptional,
   IsEnum,
   IsString,
+  MaxLength,
   IsBoolean,
   IsDate,
 } from "class-validator";
@@ -54,6 +55,7 @@ class WorkflowReminderUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,

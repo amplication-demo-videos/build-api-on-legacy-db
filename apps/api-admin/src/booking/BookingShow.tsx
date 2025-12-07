@@ -78,7 +78,7 @@ export const BookingShow = (props: ShowProps): React.ReactElement => {
           target="bookingId"
           label="Attendees"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Booking"
               source="booking.id"
@@ -98,7 +98,7 @@ export const BookingShow = (props: ShowProps): React.ReactElement => {
           target="bookingId"
           label="Payments"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <TextField label="Amount" source="amount" />
             <ReferenceField
               label="Booking"
@@ -123,7 +123,7 @@ export const BookingShow = (props: ShowProps): React.ReactElement => {
           target="bookingId"
           label="BookingReferences"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Booking"
               source="booking.id"
@@ -149,7 +149,7 @@ export const BookingShow = (props: ShowProps): React.ReactElement => {
           target="bookingUid"
           label="WorkflowReminders"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Booking"
               source="booking.id"

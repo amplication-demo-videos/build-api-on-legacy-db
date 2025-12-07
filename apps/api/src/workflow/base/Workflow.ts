@@ -17,6 +17,8 @@ import {
   IsOptional,
   IsInt,
   IsString,
+  MaxLength,
+  Max,
   IsEnum,
 } from "class-validator";
 import { Type } from "class-transformer";
@@ -49,6 +51,7 @@ class Workflow {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   name!: string;
 
@@ -66,6 +69,7 @@ class Workflow {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
