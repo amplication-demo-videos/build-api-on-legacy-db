@@ -10,49 +10,48 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
-  Impersonation, // @ts-ignore
-  User,
+  Impersonation as PrismaImpersonation,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class ImpersonationServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.ImpersonationCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ImpersonationCountArgs>
+  async count(
+    args: Omit<Prisma.ImpersonationCountArgs, "select">
   ): Promise<number> {
     return this.prisma.impersonation.count(args);
   }
 
-  async impersonations<T extends Prisma.ImpersonationFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ImpersonationFindManyArgs>
-  ): Promise<Impersonation[]> {
+  async impersonations(
+    args: Prisma.ImpersonationFindManyArgs
+  ): Promise<PrismaImpersonation[]> {
     return this.prisma.impersonation.findMany(args);
   }
-  async impersonation<T extends Prisma.ImpersonationFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ImpersonationFindUniqueArgs>
-  ): Promise<Impersonation | null> {
+  async impersonation(
+    args: Prisma.ImpersonationFindUniqueArgs
+  ): Promise<PrismaImpersonation | null> {
     return this.prisma.impersonation.findUnique(args);
   }
-  async createImpersonation<T extends Prisma.ImpersonationCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ImpersonationCreateArgs>
-  ): Promise<Impersonation> {
-    return this.prisma.impersonation.create<T>(args);
+  async createImpersonation(
+    args: Prisma.ImpersonationCreateArgs
+  ): Promise<PrismaImpersonation> {
+    return this.prisma.impersonation.create(args);
   }
-  async updateImpersonation<T extends Prisma.ImpersonationUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ImpersonationUpdateArgs>
-  ): Promise<Impersonation> {
-    return this.prisma.impersonation.update<T>(args);
+  async updateImpersonation(
+    args: Prisma.ImpersonationUpdateArgs
+  ): Promise<PrismaImpersonation> {
+    return this.prisma.impersonation.update(args);
   }
-  async deleteImpersonation<T extends Prisma.ImpersonationDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ImpersonationDeleteArgs>
-  ): Promise<Impersonation> {
+  async deleteImpersonation(
+    args: Prisma.ImpersonationDeleteArgs
+  ): Promise<PrismaImpersonation> {
     return this.prisma.impersonation.delete(args);
   }
 
-  async getImpersonatedBy(parentId: number): Promise<User | null> {
+  async getImpersonatedBy(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.impersonation
       .findUnique({
         where: { id: parentId },
@@ -60,7 +59,7 @@ export class ImpersonationServiceBase {
       .impersonatedBy();
   }
 
-  async getImpersonatedUser(parentId: number): Promise<User | null> {
+  async getImpersonatedUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.impersonation
       .findUnique({
         where: { id: parentId },

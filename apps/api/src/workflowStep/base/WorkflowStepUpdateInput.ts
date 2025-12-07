@@ -16,7 +16,9 @@ import {
   IsEnum,
   IsOptional,
   IsString,
+  MaxLength,
   IsInt,
+  Max,
   ValidateNested,
 } from "class-validator";
 import { EnumWorkflowStepTemplate } from "./EnumWorkflowStepTemplate";
@@ -42,6 +44,7 @@ class WorkflowStepUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -53,6 +56,7 @@ class WorkflowStepUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -64,6 +68,7 @@ class WorkflowStepUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -75,6 +80,7 @@ class WorkflowStepUpdateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,

@@ -16,6 +16,7 @@ import {
   ValidateNested,
   IsInt,
   IsString,
+  MaxLength,
   IsBoolean,
   IsEnum,
 } from "class-validator";
@@ -45,6 +46,7 @@ class EventTypeCustomInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   label!: string;
 
@@ -53,6 +55,7 @@ class EventTypeCustomInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   placeholder!: string;
 

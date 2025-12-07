@@ -13,12 +13,11 @@ export const AttendeeList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"Attendees"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField label="Booking" source="booking.id" reference="Booking">
           <TextField source={BOOKING_TITLE_FIELD} />
         </ReferenceField>
@@ -26,7 +25,7 @@ export const AttendeeList = (props: ListProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <TextField label="Locale" source="locale" />
         <TextField label="Name" source="name" />
-        <TextField label="Time Zone" source="timeZone" />
+        <TextField label="Time Zone" source="timeZone" />{" "}
       </Datagrid>
     </List>
   );

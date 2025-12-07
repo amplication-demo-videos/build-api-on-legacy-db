@@ -18,12 +18,11 @@ export const DestinationCalendarList = (
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"DestinationCalendars"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField label="Booking" source="booking.id" reference="Booking">
           <TextField source={BOOKING_TITLE_FIELD} />
         </ReferenceField>
@@ -46,7 +45,7 @@ export const DestinationCalendarList = (
         <TextField label="Integration" source="integration" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

@@ -10,40 +10,40 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ReminderMail } from "@prisma/client";
+import { Prisma, ReminderMail as PrismaReminderMail } from "@prisma/client";
 
 export class ReminderMailServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.ReminderMailCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ReminderMailCountArgs>
+  async count(
+    args: Omit<Prisma.ReminderMailCountArgs, "select">
   ): Promise<number> {
     return this.prisma.reminderMail.count(args);
   }
 
-  async reminderMails<T extends Prisma.ReminderMailFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ReminderMailFindManyArgs>
-  ): Promise<ReminderMail[]> {
+  async reminderMails(
+    args: Prisma.ReminderMailFindManyArgs
+  ): Promise<PrismaReminderMail[]> {
     return this.prisma.reminderMail.findMany(args);
   }
-  async reminderMail<T extends Prisma.ReminderMailFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ReminderMailFindUniqueArgs>
-  ): Promise<ReminderMail | null> {
+  async reminderMail(
+    args: Prisma.ReminderMailFindUniqueArgs
+  ): Promise<PrismaReminderMail | null> {
     return this.prisma.reminderMail.findUnique(args);
   }
-  async createReminderMail<T extends Prisma.ReminderMailCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ReminderMailCreateArgs>
-  ): Promise<ReminderMail> {
-    return this.prisma.reminderMail.create<T>(args);
+  async createReminderMail(
+    args: Prisma.ReminderMailCreateArgs
+  ): Promise<PrismaReminderMail> {
+    return this.prisma.reminderMail.create(args);
   }
-  async updateReminderMail<T extends Prisma.ReminderMailUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ReminderMailUpdateArgs>
-  ): Promise<ReminderMail> {
-    return this.prisma.reminderMail.update<T>(args);
+  async updateReminderMail(
+    args: Prisma.ReminderMailUpdateArgs
+  ): Promise<PrismaReminderMail> {
+    return this.prisma.reminderMail.update(args);
   }
-  async deleteReminderMail<T extends Prisma.ReminderMailDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ReminderMailDeleteArgs>
-  ): Promise<ReminderMail> {
+  async deleteReminderMail(
+    args: Prisma.ReminderMailDeleteArgs
+  ): Promise<PrismaReminderMail> {
     return this.prisma.reminderMail.delete(args);
   }
 }

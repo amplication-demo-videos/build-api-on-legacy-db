@@ -13,48 +13,38 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  Webhook, // @ts-ignore
-  AppModel, // @ts-ignore
-  EventType, // @ts-ignore
-  User,
+  Webhook as PrismaWebhook,
+  AppModel as PrismaAppModel,
+  EventType as PrismaEventType,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class WebhookServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.WebhookCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WebhookCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.WebhookCountArgs, "select">): Promise<number> {
     return this.prisma.webhook.count(args);
   }
 
-  async webhooks<T extends Prisma.WebhookFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WebhookFindManyArgs>
-  ): Promise<Webhook[]> {
+  async webhooks(args: Prisma.WebhookFindManyArgs): Promise<PrismaWebhook[]> {
     return this.prisma.webhook.findMany(args);
   }
-  async webhook<T extends Prisma.WebhookFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WebhookFindUniqueArgs>
-  ): Promise<Webhook | null> {
+  async webhook(
+    args: Prisma.WebhookFindUniqueArgs
+  ): Promise<PrismaWebhook | null> {
     return this.prisma.webhook.findUnique(args);
   }
-  async createWebhook<T extends Prisma.WebhookCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WebhookCreateArgs>
-  ): Promise<Webhook> {
-    return this.prisma.webhook.create<T>(args);
+  async createWebhook(args: Prisma.WebhookCreateArgs): Promise<PrismaWebhook> {
+    return this.prisma.webhook.create(args);
   }
-  async updateWebhook<T extends Prisma.WebhookUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WebhookUpdateArgs>
-  ): Promise<Webhook> {
-    return this.prisma.webhook.update<T>(args);
+  async updateWebhook(args: Prisma.WebhookUpdateArgs): Promise<PrismaWebhook> {
+    return this.prisma.webhook.update(args);
   }
-  async deleteWebhook<T extends Prisma.WebhookDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WebhookDeleteArgs>
-  ): Promise<Webhook> {
+  async deleteWebhook(args: Prisma.WebhookDeleteArgs): Promise<PrismaWebhook> {
     return this.prisma.webhook.delete(args);
   }
 
-  async getAppField(parentId: string): Promise<AppModel | null> {
+  async getAppField(parentId: string): Promise<PrismaAppModel | null> {
     return this.prisma.webhook
       .findUnique({
         where: { id: parentId },
@@ -62,7 +52,7 @@ export class WebhookServiceBase {
       .appField();
   }
 
-  async getEventType(parentId: string): Promise<EventType | null> {
+  async getEventType(parentId: string): Promise<PrismaEventType | null> {
     return this.prisma.webhook
       .findUnique({
         where: { id: parentId },
@@ -70,7 +60,7 @@ export class WebhookServiceBase {
       .eventType();
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async getUser(parentId: string): Promise<PrismaUser | null> {
     return this.prisma.webhook
       .findUnique({
         where: { id: parentId },

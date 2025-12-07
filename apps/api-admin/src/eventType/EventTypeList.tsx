@@ -17,12 +17,11 @@ export const EventTypeList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"EventTypes"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="After Event Buffer" source="afterEventBuffer" />
         <TextField label="Before Event Buffer" source="beforeEventBuffer" />
         <TextField label="Currency" source="currency" />
@@ -85,7 +84,7 @@ export const EventTypeList = (props: ListProps): React.ReactElement => {
         </ReferenceField>
         <TextField label="Time Zone" source="timeZone" />
         <TextField label="Title" source="title" />
-        <TextField label="User Id" source="userId" />
+        <TextField label="User Id" source="userId" />{" "}
       </Datagrid>
     </List>
   );

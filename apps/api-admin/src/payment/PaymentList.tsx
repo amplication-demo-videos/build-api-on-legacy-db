@@ -14,12 +14,11 @@ export const PaymentList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"Payments"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="Amount" source="amount" />
         <ReferenceField label="Booking" source="booking.id" reference="Booking">
           <TextField source={BOOKING_TITLE_FIELD} />
@@ -32,7 +31,7 @@ export const PaymentList = (props: ListProps): React.ReactElement => {
         <BooleanField label="Refunded" source="refunded" />
         <BooleanField label="Success" source="success" />
         <TextField label="Type" source="type" />
-        <TextField label="Uid" source="uid" />
+        <TextField label="Uid" source="uid" />{" "}
       </Datagrid>
     </List>
   );

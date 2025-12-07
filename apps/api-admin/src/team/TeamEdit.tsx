@@ -18,23 +18,21 @@ export const TeamEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <TextInput label="Bio" source="bio" />
-        <ReferenceArrayInput
-          source="eventTypes"
-          reference="EventType"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={EventTypeTitle} />
+        <ReferenceArrayInput source="eventTypes" reference="EventType">
+          <SelectArrayInput
+            optionText={EventTypeTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <BooleanInput label="Hide Branding" source="hideBranding" />
         <TextInput label="Logo" source="logo" />
-        <ReferenceArrayInput
-          source="members"
-          reference="Membership"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={MembershipTitle} />
+        <ReferenceArrayInput source="members" reference="Membership">
+          <SelectArrayInput
+            optionText={MembershipTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Name" source="name" />
         <TextInput label="Slug" source="slug" />

@@ -13,51 +13,49 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  Workflow, // @ts-ignore
-  WorkflowsOnEventType, // @ts-ignore
-  WorkflowStep, // @ts-ignore
-  User,
+  Workflow as PrismaWorkflow,
+  WorkflowsOnEventType as PrismaWorkflowsOnEventType,
+  WorkflowStep as PrismaWorkflowStep,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class WorkflowServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.WorkflowCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.WorkflowCountArgs, "select">): Promise<number> {
     return this.prisma.workflow.count(args);
   }
 
-  async workflows<T extends Prisma.WorkflowFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowFindManyArgs>
-  ): Promise<Workflow[]> {
+  async workflows(
+    args: Prisma.WorkflowFindManyArgs
+  ): Promise<PrismaWorkflow[]> {
     return this.prisma.workflow.findMany(args);
   }
-  async workflow<T extends Prisma.WorkflowFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowFindUniqueArgs>
-  ): Promise<Workflow | null> {
+  async workflow(
+    args: Prisma.WorkflowFindUniqueArgs
+  ): Promise<PrismaWorkflow | null> {
     return this.prisma.workflow.findUnique(args);
   }
-  async createWorkflow<T extends Prisma.WorkflowCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowCreateArgs>
-  ): Promise<Workflow> {
-    return this.prisma.workflow.create<T>(args);
+  async createWorkflow(
+    args: Prisma.WorkflowCreateArgs
+  ): Promise<PrismaWorkflow> {
+    return this.prisma.workflow.create(args);
   }
-  async updateWorkflow<T extends Prisma.WorkflowUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowUpdateArgs>
-  ): Promise<Workflow> {
-    return this.prisma.workflow.update<T>(args);
+  async updateWorkflow(
+    args: Prisma.WorkflowUpdateArgs
+  ): Promise<PrismaWorkflow> {
+    return this.prisma.workflow.update(args);
   }
-  async deleteWorkflow<T extends Prisma.WorkflowDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.WorkflowDeleteArgs>
-  ): Promise<Workflow> {
+  async deleteWorkflow(
+    args: Prisma.WorkflowDeleteArgs
+  ): Promise<PrismaWorkflow> {
     return this.prisma.workflow.delete(args);
   }
 
   async findActiveOn(
     parentId: number,
     args: Prisma.WorkflowsOnEventTypeFindManyArgs
-  ): Promise<WorkflowsOnEventType[]> {
+  ): Promise<PrismaWorkflowsOnEventType[]> {
     return this.prisma.workflow
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -68,7 +66,7 @@ export class WorkflowServiceBase {
   async findSteps(
     parentId: number,
     args: Prisma.WorkflowStepFindManyArgs
-  ): Promise<WorkflowStep[]> {
+  ): Promise<PrismaWorkflowStep[]> {
     return this.prisma.workflow
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -76,7 +74,7 @@ export class WorkflowServiceBase {
       .steps(args);
   }
 
-  async getUser(parentId: number): Promise<User | null> {
+  async getUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.workflow
       .findUnique({
         where: { id: parentId },

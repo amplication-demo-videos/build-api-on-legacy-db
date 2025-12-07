@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsInt, IsString } from "class-validator";
+import { IsDate, IsInt, IsString, MaxLength } from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -45,6 +45,7 @@ class VerificationToken {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   identifier!: string;
 
@@ -53,6 +54,7 @@ class VerificationToken {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   token!: string;
 

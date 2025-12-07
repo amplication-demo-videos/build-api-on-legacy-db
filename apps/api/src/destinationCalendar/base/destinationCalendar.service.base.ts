@@ -13,55 +13,49 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  DestinationCalendar, // @ts-ignore
-  Booking, // @ts-ignore
-  Credential, // @ts-ignore
-  EventType, // @ts-ignore
-  User,
+  DestinationCalendar as PrismaDestinationCalendar,
+  Booking as PrismaBooking,
+  Credential as PrismaCredential,
+  EventType as PrismaEventType,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class DestinationCalendarServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.DestinationCalendarCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.DestinationCalendarCountArgs>
+  async count(
+    args: Omit<Prisma.DestinationCalendarCountArgs, "select">
   ): Promise<number> {
     return this.prisma.destinationCalendar.count(args);
   }
 
-  async destinationCalendars<T extends Prisma.DestinationCalendarFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.DestinationCalendarFindManyArgs>
-  ): Promise<DestinationCalendar[]> {
+  async destinationCalendars(
+    args: Prisma.DestinationCalendarFindManyArgs
+  ): Promise<PrismaDestinationCalendar[]> {
     return this.prisma.destinationCalendar.findMany(args);
   }
-  async destinationCalendar<T extends Prisma.DestinationCalendarFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.DestinationCalendarFindUniqueArgs>
-  ): Promise<DestinationCalendar | null> {
+  async destinationCalendar(
+    args: Prisma.DestinationCalendarFindUniqueArgs
+  ): Promise<PrismaDestinationCalendar | null> {
     return this.prisma.destinationCalendar.findUnique(args);
   }
-  async createDestinationCalendar<
-    T extends Prisma.DestinationCalendarCreateArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.DestinationCalendarCreateArgs>
-  ): Promise<DestinationCalendar> {
-    return this.prisma.destinationCalendar.create<T>(args);
+  async createDestinationCalendar(
+    args: Prisma.DestinationCalendarCreateArgs
+  ): Promise<PrismaDestinationCalendar> {
+    return this.prisma.destinationCalendar.create(args);
   }
-  async updateDestinationCalendar<
-    T extends Prisma.DestinationCalendarUpdateArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.DestinationCalendarUpdateArgs>
-  ): Promise<DestinationCalendar> {
-    return this.prisma.destinationCalendar.update<T>(args);
+  async updateDestinationCalendar(
+    args: Prisma.DestinationCalendarUpdateArgs
+  ): Promise<PrismaDestinationCalendar> {
+    return this.prisma.destinationCalendar.update(args);
   }
-  async deleteDestinationCalendar<
-    T extends Prisma.DestinationCalendarDeleteArgs
-  >(
-    args: Prisma.SelectSubset<T, Prisma.DestinationCalendarDeleteArgs>
-  ): Promise<DestinationCalendar> {
+  async deleteDestinationCalendar(
+    args: Prisma.DestinationCalendarDeleteArgs
+  ): Promise<PrismaDestinationCalendar> {
     return this.prisma.destinationCalendar.delete(args);
   }
 
-  async getBooking(parentId: number): Promise<Booking | null> {
+  async getBooking(parentId: number): Promise<PrismaBooking | null> {
     return this.prisma.destinationCalendar
       .findUnique({
         where: { id: parentId },
@@ -69,7 +63,7 @@ export class DestinationCalendarServiceBase {
       .booking();
   }
 
-  async getCredential(parentId: number): Promise<Credential | null> {
+  async getCredential(parentId: number): Promise<PrismaCredential | null> {
     return this.prisma.destinationCalendar
       .findUnique({
         where: { id: parentId },
@@ -77,7 +71,7 @@ export class DestinationCalendarServiceBase {
       .credential();
   }
 
-  async getEventType(parentId: number): Promise<EventType | null> {
+  async getEventType(parentId: number): Promise<PrismaEventType | null> {
     return this.prisma.destinationCalendar
       .findUnique({
         where: { id: parentId },
@@ -85,7 +79,7 @@ export class DestinationCalendarServiceBase {
       .eventType();
   }
 
-  async getUser(parentId: number): Promise<User | null> {
+  async getUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.destinationCalendar
       .findUnique({
         where: { id: parentId },

@@ -12,7 +12,13 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { EventTypeWhereUniqueInput } from "../../eventType/base/EventTypeWhereUniqueInput";
-import { ValidateNested, IsString, IsBoolean, IsEnum } from "class-validator";
+import {
+  ValidateNested,
+  IsString,
+  MaxLength,
+  IsBoolean,
+  IsEnum,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { EnumEventTypeCustomInputType } from "./EnumEventTypeCustomInputType";
 
@@ -32,6 +38,7 @@ class EventTypeCustomInputCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   label!: string;
 
@@ -40,6 +47,7 @@ class EventTypeCustomInputCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   placeholder!: string;
 

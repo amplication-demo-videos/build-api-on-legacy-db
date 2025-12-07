@@ -14,12 +14,11 @@ export const BookingReferenceList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"BookingReferences"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField label="Booking" source="booking.id" reference="Booking">
           <TextField source={BOOKING_TITLE_FIELD} />
         </ReferenceField>
@@ -30,7 +29,7 @@ export const BookingReferenceList = (props: ListProps): React.ReactElement => {
         <TextField label="Meeting Password" source="meetingPassword" />
         <TextField label="Meeting Url" source="meetingUrl" />
         <TextField label="Type Field" source="typeField" />
-        <TextField label="Uid" source="uid" />
+        <TextField label="Uid" source="uid" />{" "}
       </Datagrid>
     </List>
   );

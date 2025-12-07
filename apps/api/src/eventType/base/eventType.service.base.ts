@@ -13,58 +13,58 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  EventType, // @ts-ignore
-  Availability, // @ts-ignore
-  Booking, // @ts-ignore
-  EventTypeCustomInput, // @ts-ignore
-  User, // @ts-ignore
-  Webhook, // @ts-ignore
-  WorkflowsOnEventType, // @ts-ignore
-  DestinationCalendar, // @ts-ignore
-  HashedLink, // @ts-ignore
-  Schedule, // @ts-ignore
-  Team,
+  EventType as PrismaEventType,
+  Availability as PrismaAvailability,
+  Booking as PrismaBooking,
+  EventTypeCustomInput as PrismaEventTypeCustomInput,
+  User as PrismaUser,
+  Webhook as PrismaWebhook,
+  WorkflowsOnEventType as PrismaWorkflowsOnEventType,
+  DestinationCalendar as PrismaDestinationCalendar,
+  HashedLink as PrismaHashedLink,
+  Schedule as PrismaSchedule,
+  Team as PrismaTeam,
 } from "@prisma/client";
 
 export class EventTypeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.EventTypeCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.EventTypeCountArgs>
+  async count(
+    args: Omit<Prisma.EventTypeCountArgs, "select">
   ): Promise<number> {
     return this.prisma.eventType.count(args);
   }
 
-  async eventTypes<T extends Prisma.EventTypeFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.EventTypeFindManyArgs>
-  ): Promise<EventType[]> {
+  async eventTypes(
+    args: Prisma.EventTypeFindManyArgs
+  ): Promise<PrismaEventType[]> {
     return this.prisma.eventType.findMany(args);
   }
-  async eventType<T extends Prisma.EventTypeFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.EventTypeFindUniqueArgs>
-  ): Promise<EventType | null> {
+  async eventType(
+    args: Prisma.EventTypeFindUniqueArgs
+  ): Promise<PrismaEventType | null> {
     return this.prisma.eventType.findUnique(args);
   }
-  async createEventType<T extends Prisma.EventTypeCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.EventTypeCreateArgs>
-  ): Promise<EventType> {
-    return this.prisma.eventType.create<T>(args);
+  async createEventType(
+    args: Prisma.EventTypeCreateArgs
+  ): Promise<PrismaEventType> {
+    return this.prisma.eventType.create(args);
   }
-  async updateEventType<T extends Prisma.EventTypeUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.EventTypeUpdateArgs>
-  ): Promise<EventType> {
-    return this.prisma.eventType.update<T>(args);
+  async updateEventType(
+    args: Prisma.EventTypeUpdateArgs
+  ): Promise<PrismaEventType> {
+    return this.prisma.eventType.update(args);
   }
-  async deleteEventType<T extends Prisma.EventTypeDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.EventTypeDeleteArgs>
-  ): Promise<EventType> {
+  async deleteEventType(
+    args: Prisma.EventTypeDeleteArgs
+  ): Promise<PrismaEventType> {
     return this.prisma.eventType.delete(args);
   }
 
   async findAvailability(
     parentId: number,
     args: Prisma.AvailabilityFindManyArgs
-  ): Promise<Availability[]> {
+  ): Promise<PrismaAvailability[]> {
     return this.prisma.eventType
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -75,7 +75,7 @@ export class EventTypeServiceBase {
   async findBookings(
     parentId: number,
     args: Prisma.BookingFindManyArgs
-  ): Promise<Booking[]> {
+  ): Promise<PrismaBooking[]> {
     return this.prisma.eventType
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -86,7 +86,7 @@ export class EventTypeServiceBase {
   async findCustomInputs(
     parentId: number,
     args: Prisma.EventTypeCustomInputFindManyArgs
-  ): Promise<EventTypeCustomInput[]> {
+  ): Promise<PrismaEventTypeCustomInput[]> {
     return this.prisma.eventType
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -97,7 +97,7 @@ export class EventTypeServiceBase {
   async findUsers(
     parentId: number,
     args: Prisma.UserFindManyArgs
-  ): Promise<User[]> {
+  ): Promise<PrismaUser[]> {
     return this.prisma.eventType
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -108,7 +108,7 @@ export class EventTypeServiceBase {
   async findWebhooks(
     parentId: number,
     args: Prisma.WebhookFindManyArgs
-  ): Promise<Webhook[]> {
+  ): Promise<PrismaWebhook[]> {
     return this.prisma.eventType
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -119,7 +119,7 @@ export class EventTypeServiceBase {
   async findWorkflows(
     parentId: number,
     args: Prisma.WorkflowsOnEventTypeFindManyArgs
-  ): Promise<WorkflowsOnEventType[]> {
+  ): Promise<PrismaWorkflowsOnEventType[]> {
     return this.prisma.eventType
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -129,7 +129,7 @@ export class EventTypeServiceBase {
 
   async getDestinationCalendar(
     parentId: number
-  ): Promise<DestinationCalendar | null> {
+  ): Promise<PrismaDestinationCalendar | null> {
     return this.prisma.eventType
       .findUnique({
         where: { id: parentId },
@@ -137,7 +137,7 @@ export class EventTypeServiceBase {
       .destinationCalendar();
   }
 
-  async getHashedLink(parentId: number): Promise<HashedLink | null> {
+  async getHashedLink(parentId: number): Promise<PrismaHashedLink | null> {
     return this.prisma.eventType
       .findUnique({
         where: { id: parentId },
@@ -145,7 +145,7 @@ export class EventTypeServiceBase {
       .hashedLink();
   }
 
-  async getSchedule(parentId: number): Promise<Schedule | null> {
+  async getSchedule(parentId: number): Promise<PrismaSchedule | null> {
     return this.prisma.eventType
       .findUnique({
         where: { id: parentId },
@@ -153,7 +153,7 @@ export class EventTypeServiceBase {
       .schedule();
   }
 
-  async getTeam(parentId: number): Promise<Team | null> {
+  async getTeam(parentId: number): Promise<PrismaTeam | null> {
     return this.prisma.eventType
       .findUnique({
         where: { id: parentId },

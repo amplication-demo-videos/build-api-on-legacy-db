@@ -17,6 +17,7 @@ import {
   ValidateNested,
   IsEnum,
   IsString,
+  MaxLength,
 } from "class-validator";
 import { AppModelWhereUniqueInput } from "../../appModel/base/AppModelWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -82,6 +83,7 @@ class WebhookUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -93,6 +95,7 @@ class WebhookUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -104,6 +107,7 @@ class WebhookUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,

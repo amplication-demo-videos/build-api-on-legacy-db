@@ -13,50 +13,38 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  Team, // @ts-ignore
-  EventType, // @ts-ignore
-  Membership,
+  Team as PrismaTeam,
+  EventType as PrismaEventType,
+  Membership as PrismaMembership,
 } from "@prisma/client";
 
 export class TeamServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.TeamCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.TeamCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.TeamCountArgs, "select">): Promise<number> {
     return this.prisma.team.count(args);
   }
 
-  async teams<T extends Prisma.TeamFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.TeamFindManyArgs>
-  ): Promise<Team[]> {
+  async teams(args: Prisma.TeamFindManyArgs): Promise<PrismaTeam[]> {
     return this.prisma.team.findMany(args);
   }
-  async team<T extends Prisma.TeamFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.TeamFindUniqueArgs>
-  ): Promise<Team | null> {
+  async team(args: Prisma.TeamFindUniqueArgs): Promise<PrismaTeam | null> {
     return this.prisma.team.findUnique(args);
   }
-  async createTeam<T extends Prisma.TeamCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.TeamCreateArgs>
-  ): Promise<Team> {
-    return this.prisma.team.create<T>(args);
+  async createTeam(args: Prisma.TeamCreateArgs): Promise<PrismaTeam> {
+    return this.prisma.team.create(args);
   }
-  async updateTeam<T extends Prisma.TeamUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.TeamUpdateArgs>
-  ): Promise<Team> {
-    return this.prisma.team.update<T>(args);
+  async updateTeam(args: Prisma.TeamUpdateArgs): Promise<PrismaTeam> {
+    return this.prisma.team.update(args);
   }
-  async deleteTeam<T extends Prisma.TeamDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.TeamDeleteArgs>
-  ): Promise<Team> {
+  async deleteTeam(args: Prisma.TeamDeleteArgs): Promise<PrismaTeam> {
     return this.prisma.team.delete(args);
   }
 
   async findEventTypes(
     parentId: number,
     args: Prisma.EventTypeFindManyArgs
-  ): Promise<EventType[]> {
+  ): Promise<PrismaEventType[]> {
     return this.prisma.team
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -67,7 +55,7 @@ export class TeamServiceBase {
   async findMembers(
     parentId: number,
     args: Prisma.MembershipFindManyArgs
-  ): Promise<Membership[]> {
+  ): Promise<PrismaMembership[]> {
     return this.prisma.team
       .findUniqueOrThrow({
         where: { id: parentId },

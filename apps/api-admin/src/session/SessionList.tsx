@@ -13,18 +13,17 @@ export const SessionList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"Sessions"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="Expires" source="expires" />
         <TextField label="ID" source="id" />
         <TextField label="Session Token" source="sessionToken" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

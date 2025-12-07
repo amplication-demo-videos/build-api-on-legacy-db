@@ -18,6 +18,7 @@ import {
   IsEnum,
   IsDate,
   IsString,
+  MaxLength,
 } from "class-validator";
 import { Type } from "class-transformer";
 import { EnumAppModelCategories } from "./EnumAppModelCategories";
@@ -76,6 +77,7 @@ class AppModel {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   dirName!: string;
 

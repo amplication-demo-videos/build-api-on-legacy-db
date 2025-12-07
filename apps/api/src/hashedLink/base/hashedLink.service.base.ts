@@ -10,49 +10,48 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
-  HashedLink, // @ts-ignore
-  EventType,
+  HashedLink as PrismaHashedLink,
+  EventType as PrismaEventType,
 } from "@prisma/client";
 
 export class HashedLinkServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.HashedLinkCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.HashedLinkCountArgs>
+  async count(
+    args: Omit<Prisma.HashedLinkCountArgs, "select">
   ): Promise<number> {
     return this.prisma.hashedLink.count(args);
   }
 
-  async hashedLinks<T extends Prisma.HashedLinkFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.HashedLinkFindManyArgs>
-  ): Promise<HashedLink[]> {
+  async hashedLinks(
+    args: Prisma.HashedLinkFindManyArgs
+  ): Promise<PrismaHashedLink[]> {
     return this.prisma.hashedLink.findMany(args);
   }
-  async hashedLink<T extends Prisma.HashedLinkFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.HashedLinkFindUniqueArgs>
-  ): Promise<HashedLink | null> {
+  async hashedLink(
+    args: Prisma.HashedLinkFindUniqueArgs
+  ): Promise<PrismaHashedLink | null> {
     return this.prisma.hashedLink.findUnique(args);
   }
-  async createHashedLink<T extends Prisma.HashedLinkCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.HashedLinkCreateArgs>
-  ): Promise<HashedLink> {
-    return this.prisma.hashedLink.create<T>(args);
+  async createHashedLink(
+    args: Prisma.HashedLinkCreateArgs
+  ): Promise<PrismaHashedLink> {
+    return this.prisma.hashedLink.create(args);
   }
-  async updateHashedLink<T extends Prisma.HashedLinkUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.HashedLinkUpdateArgs>
-  ): Promise<HashedLink> {
-    return this.prisma.hashedLink.update<T>(args);
+  async updateHashedLink(
+    args: Prisma.HashedLinkUpdateArgs
+  ): Promise<PrismaHashedLink> {
+    return this.prisma.hashedLink.update(args);
   }
-  async deleteHashedLink<T extends Prisma.HashedLinkDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.HashedLinkDeleteArgs>
-  ): Promise<HashedLink> {
+  async deleteHashedLink(
+    args: Prisma.HashedLinkDeleteArgs
+  ): Promise<PrismaHashedLink> {
     return this.prisma.hashedLink.delete(args);
   }
 
-  async getEventType(parentId: number): Promise<EventType | null> {
+  async getEventType(parentId: number): Promise<PrismaEventType | null> {
     return this.prisma.hashedLink
       .findUnique({
         where: { id: parentId },

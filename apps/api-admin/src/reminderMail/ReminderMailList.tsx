@@ -6,17 +6,16 @@ export const ReminderMailList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"ReminderMails"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <DateField source="createdAt" label="Created At" />
         <TextField label="Elapsed Minutes" source="elapsedMinutes" />
         <TextField label="ID" source="id" />
         <TextField label="Reference Id" source="referenceId" />
-        <TextField label="Reminder Type" source="reminderType" />
+        <TextField label="Reminder Type" source="reminderType" />{" "}
       </Datagrid>
     </List>
   );

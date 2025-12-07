@@ -10,49 +10,48 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
-  SelectedCalendar, // @ts-ignore
-  User,
+  SelectedCalendar as PrismaSelectedCalendar,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class SelectedCalendarServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.SelectedCalendarCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SelectedCalendarCountArgs>
+  async count(
+    args: Omit<Prisma.SelectedCalendarCountArgs, "select">
   ): Promise<number> {
     return this.prisma.selectedCalendar.count(args);
   }
 
-  async selectedCalendars<T extends Prisma.SelectedCalendarFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SelectedCalendarFindManyArgs>
-  ): Promise<SelectedCalendar[]> {
+  async selectedCalendars(
+    args: Prisma.SelectedCalendarFindManyArgs
+  ): Promise<PrismaSelectedCalendar[]> {
     return this.prisma.selectedCalendar.findMany(args);
   }
-  async selectedCalendar<T extends Prisma.SelectedCalendarFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SelectedCalendarFindUniqueArgs>
-  ): Promise<SelectedCalendar | null> {
+  async selectedCalendar(
+    args: Prisma.SelectedCalendarFindUniqueArgs
+  ): Promise<PrismaSelectedCalendar | null> {
     return this.prisma.selectedCalendar.findUnique(args);
   }
-  async createSelectedCalendar<T extends Prisma.SelectedCalendarCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SelectedCalendarCreateArgs>
-  ): Promise<SelectedCalendar> {
-    return this.prisma.selectedCalendar.create<T>(args);
+  async createSelectedCalendar(
+    args: Prisma.SelectedCalendarCreateArgs
+  ): Promise<PrismaSelectedCalendar> {
+    return this.prisma.selectedCalendar.create(args);
   }
-  async updateSelectedCalendar<T extends Prisma.SelectedCalendarUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SelectedCalendarUpdateArgs>
-  ): Promise<SelectedCalendar> {
-    return this.prisma.selectedCalendar.update<T>(args);
+  async updateSelectedCalendar(
+    args: Prisma.SelectedCalendarUpdateArgs
+  ): Promise<PrismaSelectedCalendar> {
+    return this.prisma.selectedCalendar.update(args);
   }
-  async deleteSelectedCalendar<T extends Prisma.SelectedCalendarDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.SelectedCalendarDeleteArgs>
-  ): Promise<SelectedCalendar> {
+  async deleteSelectedCalendar(
+    args: Prisma.SelectedCalendarDeleteArgs
+  ): Promise<PrismaSelectedCalendar> {
     return this.prisma.selectedCalendar.delete(args);
   }
 
-  async getUser(parentId: number): Promise<User | null> {
+  async getUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.selectedCalendar
       .findUnique({
         where: { id: parentId },

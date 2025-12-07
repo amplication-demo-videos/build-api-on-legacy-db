@@ -13,18 +13,17 @@ export const ScheduleList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"Schedules"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
         <TextField label="Time Zone" source="timeZone" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

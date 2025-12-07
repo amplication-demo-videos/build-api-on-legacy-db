@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString } from "class-validator";
+import { IsDate, IsString, MaxLength } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -29,6 +29,7 @@ class VerificationTokenCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   identifier!: string;
 
@@ -37,6 +38,7 @@ class VerificationTokenCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   token!: string;
 }

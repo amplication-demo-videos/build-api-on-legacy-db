@@ -13,18 +13,17 @@ export const SelectedCalendarList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"SelectedCalendars"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="External Id" source="externalId" />
         <TextField label="ID" source="id" />
         <TextField label="Integration" source="integration" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

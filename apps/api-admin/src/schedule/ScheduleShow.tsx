@@ -33,7 +33,7 @@ export const ScheduleShow = (props: ShowProps): React.ReactElement => {
           target="scheduleId"
           label="Availabilities"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <TextField label="Date" source="date" />
             <TextField label="Days" source="days" />
             <TextField label="End Time" source="endTime" />
@@ -63,7 +63,7 @@ export const ScheduleShow = (props: ShowProps): React.ReactElement => {
           target="scheduleId"
           label="EventTypes"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <TextField label="After Event Buffer" source="afterEventBuffer" />
             <TextField label="Before Event Buffer" source="beforeEventBuffer" />
             <TextField label="Currency" source="currency" />

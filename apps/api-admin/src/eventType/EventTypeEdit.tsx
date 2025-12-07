@@ -34,35 +34,35 @@ export const EventTypeEdit = (props: EditProps): React.ReactElement => {
           label="After Event Buffer"
           source="afterEventBuffer"
         />
-        <ReferenceArrayInput
-          source="availability"
-          reference="Availability"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={AvailabilityTitle} />
+        <ReferenceArrayInput source="availability" reference="Availability">
+          <SelectArrayInput
+            optionText={AvailabilityTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <NumberInput
           step={1}
           label="Before Event Buffer"
           source="beforeEventBuffer"
         />
-        <ReferenceArrayInput
-          source="bookings"
-          reference="Booking"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={BookingTitle} />
+        <ReferenceArrayInput source="bookings" reference="Booking">
+          <SelectArrayInput
+            optionText={BookingTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Currency" source="currency" />
         <ReferenceArrayInput
           source="customInputs"
           reference="EventTypeCustomInput"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={EventTypeCustomInputTitle} />
+          <SelectArrayInput
+            optionText={EventTypeCustomInputTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Description" source="description" />
         <ReferenceInput
@@ -148,29 +148,29 @@ export const EventTypeEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="Time Zone" source="timeZone" />
         <TextInput label="Title" source="title" />
         <NumberInput step={1} label="User Id" source="userId" />
-        <ReferenceArrayInput
-          source="users"
-          reference="User"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={UserTitle} />
+        <ReferenceArrayInput source="users" reference="User">
+          <SelectArrayInput
+            optionText={UserTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
-        <ReferenceArrayInput
-          source="webhooks"
-          reference="Webhook"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={WebhookTitle} />
+        <ReferenceArrayInput source="webhooks" reference="Webhook">
+          <SelectArrayInput
+            optionText={WebhookTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <ReferenceArrayInput
           source="workflows"
           reference="WorkflowsOnEventType"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={WorkflowsOnEventTypeTitle} />
+          <SelectArrayInput
+            optionText={WorkflowsOnEventTypeTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>

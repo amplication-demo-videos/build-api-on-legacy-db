@@ -11,7 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsOptional, IsInt, ValidateNested } from "class-validator";
+import {
+  IsDate,
+  IsOptional,
+  IsInt,
+  Max,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { EventTypeWhereUniqueInput } from "../../eventType/base/EventTypeWhereUniqueInput";
 import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
@@ -35,6 +41,7 @@ class AvailabilityCreateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   days!: number;
 

@@ -10,20 +10,14 @@ import Pagination from "../Components/Pagination";
 
 export const TeamList = (props: ListProps): React.ReactElement => {
   return (
-    <List
-      {...props}
-      bulkActionButtons={false}
-      title={"Teams"}
-      perPage={50}
-      pagination={<Pagination />}
-    >
-      <Datagrid rowClick="show">
+    <List {...props} title={"Teams"} perPage={50} pagination={<Pagination />}>
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <TextField label="Bio" source="bio" />
         <BooleanField label="Hide Branding" source="hideBranding" />
         <TextField label="ID" source="id" />
         <TextField label="Logo" source="logo" />
         <TextField label="Name" source="name" />
-        <TextField label="Slug" source="slug" />
+        <TextField label="Slug" source="slug" />{" "}
       </Datagrid>
     </List>
   );

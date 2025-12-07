@@ -17,6 +17,7 @@ import {
   IsOptional,
   IsEnum,
   IsString,
+  MaxLength,
 } from "class-validator";
 import { AppModelWhereUniqueInput } from "../../appModel/base/AppModelWhereUniqueInput";
 import { Type } from "class-transformer";
@@ -79,6 +80,7 @@ class WebhookCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -90,6 +92,7 @@ class WebhookCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -101,6 +104,7 @@ class WebhookCreateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   subscriberUrl!: string;
 

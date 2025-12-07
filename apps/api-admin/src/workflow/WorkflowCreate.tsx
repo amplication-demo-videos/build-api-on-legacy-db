@@ -20,22 +20,20 @@ export const WorkflowCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="activeOn"
-          reference="WorkflowsOnEventType"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={WorkflowsOnEventTypeTitle} />
+        <ReferenceArrayInput source="activeOn" reference="WorkflowsOnEventType">
+          <SelectArrayInput
+            optionText={WorkflowsOnEventTypeTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Name" source="name" />
-        <ReferenceArrayInput
-          source="steps"
-          reference="WorkflowStep"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={WorkflowStepTitle} />
+        <ReferenceArrayInput source="steps" reference="WorkflowStep">
+          <SelectArrayInput
+            optionText={WorkflowStepTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <NumberInput step={1} label="Time" source="time" />
         <SelectInput

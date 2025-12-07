@@ -11,15 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+
 import {
   IsInt,
+  Max,
   ValidateNested,
   IsOptional,
   IsString,
+  MaxLength,
   IsBoolean,
   IsDate,
   IsEnum,
 } from "class-validator";
+
 import { Availability } from "../../availability/base/Availability";
 import { Type } from "class-transformer";
 import { Booking } from "../../booking/base/Booking";
@@ -44,6 +48,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   afterEventBuffer!: number;
 
@@ -61,6 +66,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   beforeEventBuffer!: number;
 
@@ -78,6 +84,7 @@ class EventType {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   currency!: string;
 
@@ -95,6 +102,7 @@ class EventType {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -123,6 +131,7 @@ class EventType {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -167,6 +176,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   length!: number;
 
@@ -195,6 +205,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   minimumBookingNotice!: number;
 
@@ -214,6 +225,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -257,6 +269,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   position!: number;
 
@@ -265,6 +278,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   price!: number;
 
@@ -311,6 +325,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -322,6 +337,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -333,6 +349,7 @@ class EventType {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   slug!: string;
 
@@ -341,6 +358,7 @@ class EventType {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -361,6 +379,7 @@ class EventType {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -372,6 +391,7 @@ class EventType {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   title!: string;
 
@@ -380,6 +400,7 @@ class EventType {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,

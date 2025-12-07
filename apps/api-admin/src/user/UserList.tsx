@@ -15,14 +15,8 @@ import { DESTINATIONCALENDAR_TITLE_FIELD } from "../destinationCalendar/Destinat
 
 export const UserList = (props: ListProps): React.ReactElement => {
   return (
-    <List
-      {...props}
-      bulkActionButtons={false}
-      title={"Users"}
-      perPage={50}
-      pagination={<Pagination />}
-    >
-      <Datagrid rowClick="show">
+    <List {...props} title={"Users"} perPage={50} pagination={<Pagination />}>
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <BooleanField
           label="Allow Dynamic Booking"
           source="allowDynamicBooking"
@@ -73,7 +67,7 @@ export const UserList = (props: ListProps): React.ReactElement => {
         <TextField label="Two Factor Secret" source="twoFactorSecret" />
         <TextField label="Username" source="username" />
         <BooleanField label="Verified" source="verified" />
-        <TextField label="Week Start" source="weekStart" />
+        <TextField label="Week Start" source="weekStart" />{" "}
       </Datagrid>
     </List>
   );

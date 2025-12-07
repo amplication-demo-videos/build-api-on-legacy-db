@@ -13,56 +13,46 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  Booking, // @ts-ignore
-  Attendee, // @ts-ignore
-  Payment, // @ts-ignore
-  BookingReference, // @ts-ignore
-  WorkflowReminder, // @ts-ignore
-  DailyEventReference, // @ts-ignore
-  DestinationCalendar, // @ts-ignore
-  EventType, // @ts-ignore
-  User,
+  Booking as PrismaBooking,
+  Attendee as PrismaAttendee,
+  Payment as PrismaPayment,
+  BookingReference as PrismaBookingReference,
+  WorkflowReminder as PrismaWorkflowReminder,
+  DailyEventReference as PrismaDailyEventReference,
+  DestinationCalendar as PrismaDestinationCalendar,
+  EventType as PrismaEventType,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class BookingServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.BookingCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.BookingCountArgs, "select">): Promise<number> {
     return this.prisma.booking.count(args);
   }
 
-  async bookings<T extends Prisma.BookingFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingFindManyArgs>
-  ): Promise<Booking[]> {
+  async bookings(args: Prisma.BookingFindManyArgs): Promise<PrismaBooking[]> {
     return this.prisma.booking.findMany(args);
   }
-  async booking<T extends Prisma.BookingFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingFindUniqueArgs>
-  ): Promise<Booking | null> {
+  async booking(
+    args: Prisma.BookingFindUniqueArgs
+  ): Promise<PrismaBooking | null> {
     return this.prisma.booking.findUnique(args);
   }
-  async createBooking<T extends Prisma.BookingCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingCreateArgs>
-  ): Promise<Booking> {
-    return this.prisma.booking.create<T>(args);
+  async createBooking(args: Prisma.BookingCreateArgs): Promise<PrismaBooking> {
+    return this.prisma.booking.create(args);
   }
-  async updateBooking<T extends Prisma.BookingUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingUpdateArgs>
-  ): Promise<Booking> {
-    return this.prisma.booking.update<T>(args);
+  async updateBooking(args: Prisma.BookingUpdateArgs): Promise<PrismaBooking> {
+    return this.prisma.booking.update(args);
   }
-  async deleteBooking<T extends Prisma.BookingDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingDeleteArgs>
-  ): Promise<Booking> {
+  async deleteBooking(args: Prisma.BookingDeleteArgs): Promise<PrismaBooking> {
     return this.prisma.booking.delete(args);
   }
 
   async findAttendees(
     parentId: number,
     args: Prisma.AttendeeFindManyArgs
-  ): Promise<Attendee[]> {
+  ): Promise<PrismaAttendee[]> {
     return this.prisma.booking
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -73,7 +63,7 @@ export class BookingServiceBase {
   async findPayment(
     parentId: number,
     args: Prisma.PaymentFindManyArgs
-  ): Promise<Payment[]> {
+  ): Promise<PrismaPayment[]> {
     return this.prisma.booking
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -84,7 +74,7 @@ export class BookingServiceBase {
   async findReferences(
     parentId: number,
     args: Prisma.BookingReferenceFindManyArgs
-  ): Promise<BookingReference[]> {
+  ): Promise<PrismaBookingReference[]> {
     return this.prisma.booking
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -95,7 +85,7 @@ export class BookingServiceBase {
   async findWorkflowReminders(
     parentId: number,
     args: Prisma.WorkflowReminderFindManyArgs
-  ): Promise<WorkflowReminder[]> {
+  ): Promise<PrismaWorkflowReminder[]> {
     return this.prisma.booking
       .findUniqueOrThrow({
         where: { id: parentId },
@@ -103,7 +93,9 @@ export class BookingServiceBase {
       .workflowReminders(args);
   }
 
-  async getDailyRef(parentId: number): Promise<DailyEventReference | null> {
+  async getDailyRef(
+    parentId: number
+  ): Promise<PrismaDailyEventReference | null> {
     return this.prisma.booking
       .findUnique({
         where: { id: parentId },
@@ -113,7 +105,7 @@ export class BookingServiceBase {
 
   async getDestinationCalendar(
     parentId: number
-  ): Promise<DestinationCalendar | null> {
+  ): Promise<PrismaDestinationCalendar | null> {
     return this.prisma.booking
       .findUnique({
         where: { id: parentId },
@@ -121,7 +113,7 @@ export class BookingServiceBase {
       .destinationCalendar();
   }
 
-  async getEventType(parentId: number): Promise<EventType | null> {
+  async getEventType(parentId: number): Promise<PrismaEventType | null> {
     return this.prisma.booking
       .findUnique({
         where: { id: parentId },
@@ -129,7 +121,7 @@ export class BookingServiceBase {
       .eventType();
   }
 
-  async getUser(parentId: number): Promise<User | null> {
+  async getUser(parentId: number): Promise<PrismaUser | null> {
     return this.prisma.booking
       .findUnique({
         where: { id: parentId },

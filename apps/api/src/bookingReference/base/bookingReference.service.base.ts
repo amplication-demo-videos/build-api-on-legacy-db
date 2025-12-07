@@ -13,46 +13,46 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  BookingReference, // @ts-ignore
-  Booking,
+  BookingReference as PrismaBookingReference,
+  Booking as PrismaBooking,
 } from "@prisma/client";
 
 export class BookingReferenceServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.BookingReferenceCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingReferenceCountArgs>
+  async count(
+    args: Omit<Prisma.BookingReferenceCountArgs, "select">
   ): Promise<number> {
     return this.prisma.bookingReference.count(args);
   }
 
-  async bookingReferences<T extends Prisma.BookingReferenceFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingReferenceFindManyArgs>
-  ): Promise<BookingReference[]> {
+  async bookingReferences(
+    args: Prisma.BookingReferenceFindManyArgs
+  ): Promise<PrismaBookingReference[]> {
     return this.prisma.bookingReference.findMany(args);
   }
-  async bookingReference<T extends Prisma.BookingReferenceFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingReferenceFindUniqueArgs>
-  ): Promise<BookingReference | null> {
+  async bookingReference(
+    args: Prisma.BookingReferenceFindUniqueArgs
+  ): Promise<PrismaBookingReference | null> {
     return this.prisma.bookingReference.findUnique(args);
   }
-  async createBookingReference<T extends Prisma.BookingReferenceCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingReferenceCreateArgs>
-  ): Promise<BookingReference> {
-    return this.prisma.bookingReference.create<T>(args);
+  async createBookingReference(
+    args: Prisma.BookingReferenceCreateArgs
+  ): Promise<PrismaBookingReference> {
+    return this.prisma.bookingReference.create(args);
   }
-  async updateBookingReference<T extends Prisma.BookingReferenceUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingReferenceUpdateArgs>
-  ): Promise<BookingReference> {
-    return this.prisma.bookingReference.update<T>(args);
+  async updateBookingReference(
+    args: Prisma.BookingReferenceUpdateArgs
+  ): Promise<PrismaBookingReference> {
+    return this.prisma.bookingReference.update(args);
   }
-  async deleteBookingReference<T extends Prisma.BookingReferenceDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.BookingReferenceDeleteArgs>
-  ): Promise<BookingReference> {
+  async deleteBookingReference(
+    args: Prisma.BookingReferenceDeleteArgs
+  ): Promise<PrismaBookingReference> {
     return this.prisma.bookingReference.delete(args);
   }
 
-  async getBooking(parentId: number): Promise<Booking | null> {
+  async getBooking(parentId: number): Promise<PrismaBooking | null> {
     return this.prisma.bookingReference
       .findUnique({
         where: { id: parentId },

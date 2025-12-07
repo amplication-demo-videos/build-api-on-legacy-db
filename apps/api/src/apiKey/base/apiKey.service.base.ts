@@ -13,47 +13,37 @@ import { PrismaService } from "../../prisma/prisma.service";
 
 import {
   Prisma,
-  ApiKey, // @ts-ignore
-  AppModel, // @ts-ignore
-  User,
+  ApiKey as PrismaApiKey,
+  AppModel as PrismaAppModel,
+  User as PrismaUser,
 } from "@prisma/client";
 
 export class ApiKeyServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.ApiKeyCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ApiKeyCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.ApiKeyCountArgs, "select">): Promise<number> {
     return this.prisma.apiKey.count(args);
   }
 
-  async apiKeys<T extends Prisma.ApiKeyFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ApiKeyFindManyArgs>
-  ): Promise<ApiKey[]> {
+  async apiKeys(args: Prisma.ApiKeyFindManyArgs): Promise<PrismaApiKey[]> {
     return this.prisma.apiKey.findMany(args);
   }
-  async apiKey<T extends Prisma.ApiKeyFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ApiKeyFindUniqueArgs>
-  ): Promise<ApiKey | null> {
+  async apiKey(
+    args: Prisma.ApiKeyFindUniqueArgs
+  ): Promise<PrismaApiKey | null> {
     return this.prisma.apiKey.findUnique(args);
   }
-  async createApiKey<T extends Prisma.ApiKeyCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ApiKeyCreateArgs>
-  ): Promise<ApiKey> {
-    return this.prisma.apiKey.create<T>(args);
+  async createApiKey(args: Prisma.ApiKeyCreateArgs): Promise<PrismaApiKey> {
+    return this.prisma.apiKey.create(args);
   }
-  async updateApiKey<T extends Prisma.ApiKeyUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ApiKeyUpdateArgs>
-  ): Promise<ApiKey> {
-    return this.prisma.apiKey.update<T>(args);
+  async updateApiKey(args: Prisma.ApiKeyUpdateArgs): Promise<PrismaApiKey> {
+    return this.prisma.apiKey.update(args);
   }
-  async deleteApiKey<T extends Prisma.ApiKeyDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.ApiKeyDeleteArgs>
-  ): Promise<ApiKey> {
+  async deleteApiKey(args: Prisma.ApiKeyDeleteArgs): Promise<PrismaApiKey> {
     return this.prisma.apiKey.delete(args);
   }
 
-  async getAppField(parentId: string): Promise<AppModel | null> {
+  async getAppField(parentId: string): Promise<PrismaAppModel | null> {
     return this.prisma.apiKey
       .findUnique({
         where: { id: parentId },
@@ -61,7 +51,7 @@ export class ApiKeyServiceBase {
       .appField();
   }
 
-  async getUser(parentId: string): Promise<User | null> {
+  async getUser(parentId: string): Promise<PrismaUser | null> {
     return this.prisma.apiKey
       .findUnique({
         where: { id: parentId },

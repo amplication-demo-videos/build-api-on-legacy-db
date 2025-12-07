@@ -15,12 +15,11 @@ export const MembershipList = (props: ListProps): React.ReactElement => {
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"Memberships"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <BooleanField label="Accepted" source="accepted" />
         <TextField label="ID" source="id" />
         <TextField label="Role" source="role" />
@@ -29,7 +28,7 @@ export const MembershipList = (props: ListProps): React.ReactElement => {
         </ReferenceField>
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

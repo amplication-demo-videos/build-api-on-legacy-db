@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsInt, IsOptional, IsEnum } from "class-validator";
+import { IsInt, Max, IsOptional, IsEnum } from "class-validator";
 import { EnumReminderMailReminderType } from "./EnumReminderMailReminderType";
 
 @InputType()
@@ -21,6 +21,7 @@ class ReminderMailUpdateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -32,6 +33,7 @@ class ReminderMailUpdateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,

@@ -38,7 +38,7 @@ export const CredentialShow = (props: ShowProps): React.ReactElement => {
           target="credentialId"
           label="DestinationCalendars"
         >
-          <Datagrid rowClick="show">
+          <Datagrid rowClick="show" bulkActionButtons={false}>
             <ReferenceField
               label="Booking"
               source="booking.id"

@@ -12,7 +12,13 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { Booking } from "../../booking/base/Booking";
-import { ValidateNested, IsOptional, IsString, IsInt } from "class-validator";
+import {
+  ValidateNested,
+  IsOptional,
+  IsString,
+  MaxLength,
+  IsInt,
+} from "class-validator";
 import { Type } from "class-transformer";
 
 @ObjectType()
@@ -31,6 +37,7 @@ class DailyEventReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   dailytoken!: string;
 
@@ -39,6 +46,7 @@ class DailyEventReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   dailyurl!: string;
 

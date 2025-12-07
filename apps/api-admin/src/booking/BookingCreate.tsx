@@ -26,13 +26,12 @@ export const BookingCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="attendees"
-          reference="Attendee"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={AttendeeTitle} />
+        <ReferenceArrayInput source="attendees" reference="Attendee">
+          <SelectArrayInput
+            optionText={AttendeeTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Cancellation Reason" source="cancellationReason" />
         <div />
@@ -70,22 +69,20 @@ export const BookingCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="From Reschedule" source="fromReschedule" />
         <TextInput label="Location" source="location" />
         <BooleanInput label="Paid" source="paid" />
-        <ReferenceArrayInput
-          source="payment"
-          reference="Payment"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={PaymentTitle} />
+        <ReferenceArrayInput source="payment" reference="Payment">
+          <SelectArrayInput
+            optionText={PaymentTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Recurring Event Id" source="recurringEventId" />
-        <ReferenceArrayInput
-          source="references"
-          reference="BookingReference"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={BookingReferenceTitle} />
+        <ReferenceArrayInput source="references" reference="BookingReference">
+          <SelectArrayInput
+            optionText={BookingReferenceTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <TextInput label="Rejection Reason" source="rejectionReason" />
         <BooleanInput label="Rescheduled" source="rescheduled" />
@@ -112,10 +109,12 @@ export const BookingCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceArrayInput
           source="workflowReminders"
           reference="WorkflowReminder"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={WorkflowReminderTitle} />
+          <SelectArrayInput
+            optionText={WorkflowReminderTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
       </SimpleForm>
     </Create>

@@ -10,49 +10,46 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-
 import {
   Prisma,
-  Attendee, // @ts-ignore
-  Booking,
+  Attendee as PrismaAttendee,
+  Booking as PrismaBooking,
 } from "@prisma/client";
 
 export class AttendeeServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
 
-  async count<T extends Prisma.AttendeeCountArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AttendeeCountArgs>
-  ): Promise<number> {
+  async count(args: Omit<Prisma.AttendeeCountArgs, "select">): Promise<number> {
     return this.prisma.attendee.count(args);
   }
 
-  async attendees<T extends Prisma.AttendeeFindManyArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AttendeeFindManyArgs>
-  ): Promise<Attendee[]> {
+  async attendees(
+    args: Prisma.AttendeeFindManyArgs
+  ): Promise<PrismaAttendee[]> {
     return this.prisma.attendee.findMany(args);
   }
-  async attendee<T extends Prisma.AttendeeFindUniqueArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AttendeeFindUniqueArgs>
-  ): Promise<Attendee | null> {
+  async attendee(
+    args: Prisma.AttendeeFindUniqueArgs
+  ): Promise<PrismaAttendee | null> {
     return this.prisma.attendee.findUnique(args);
   }
-  async createAttendee<T extends Prisma.AttendeeCreateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AttendeeCreateArgs>
-  ): Promise<Attendee> {
-    return this.prisma.attendee.create<T>(args);
+  async createAttendee(
+    args: Prisma.AttendeeCreateArgs
+  ): Promise<PrismaAttendee> {
+    return this.prisma.attendee.create(args);
   }
-  async updateAttendee<T extends Prisma.AttendeeUpdateArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AttendeeUpdateArgs>
-  ): Promise<Attendee> {
-    return this.prisma.attendee.update<T>(args);
+  async updateAttendee(
+    args: Prisma.AttendeeUpdateArgs
+  ): Promise<PrismaAttendee> {
+    return this.prisma.attendee.update(args);
   }
-  async deleteAttendee<T extends Prisma.AttendeeDeleteArgs>(
-    args: Prisma.SelectSubset<T, Prisma.AttendeeDeleteArgs>
-  ): Promise<Attendee> {
+  async deleteAttendee(
+    args: Prisma.AttendeeDeleteArgs
+  ): Promise<PrismaAttendee> {
     return this.prisma.attendee.delete(args);
   }
 
-  async getBooking(parentId: number): Promise<Booking | null> {
+  async getBooking(parentId: number): Promise<PrismaBooking | null> {
     return this.prisma.attendee
       .findUnique({
         where: { id: parentId },

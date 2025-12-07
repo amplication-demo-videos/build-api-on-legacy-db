@@ -12,7 +12,13 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { AppModel } from "../../appModel/base/AppModel";
-import { ValidateNested, IsOptional, IsInt, IsString } from "class-validator";
+import {
+  ValidateNested,
+  IsOptional,
+  IsInt,
+  IsString,
+  MaxLength,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { DestinationCalendar } from "../../destinationCalendar/base/DestinationCalendar";
 import { IsJSONValue } from "../../validators";
@@ -60,6 +66,7 @@ class Credential {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   typeField!: string;
 

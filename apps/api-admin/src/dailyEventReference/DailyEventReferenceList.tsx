@@ -15,18 +15,17 @@ export const DailyEventReferenceList = (
   return (
     <List
       {...props}
-      bulkActionButtons={false}
       title={"DailyEventReferences"}
       perPage={50}
       pagination={<Pagination />}
     >
-      <Datagrid rowClick="show">
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField label="Booking" source="booking.id" reference="Booking">
           <TextField source={BOOKING_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Dailytoken" source="dailytoken" />
         <TextField label="Dailyurl" source="dailyurl" />
-        <TextField label="ID" source="id" />
+        <TextField label="ID" source="id" />{" "}
       </Datagrid>
     </List>
   );

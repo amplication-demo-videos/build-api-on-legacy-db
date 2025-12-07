@@ -12,15 +12,19 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { Account } from "../../account/base/Account";
+
 import {
   ValidateNested,
   IsOptional,
   IsBoolean,
   IsString,
+  MaxLength,
   IsInt,
+  Max,
   IsDate,
   IsEnum,
 } from "class-validator";
+
 import { Type } from "class-transformer";
 import { ApiKey } from "../../apiKey/base/ApiKey";
 import { Availability } from "../../availability/base/Availability";
@@ -88,6 +92,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -107,6 +112,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -127,6 +133,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   brandColor!: string;
 
@@ -135,6 +142,7 @@ class User {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   bufferTime!: number;
 
@@ -168,6 +176,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   darkBrandColor!: string;
 
@@ -176,6 +185,7 @@ class User {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -204,6 +214,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   email!: string;
 
@@ -223,6 +234,7 @@ class User {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   endTime!: number;
 
@@ -275,6 +287,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -304,6 +317,7 @@ class User {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -315,6 +329,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -336,6 +351,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -347,6 +363,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -405,6 +422,7 @@ class User {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @Field(() => Number)
   startTime!: number;
 
@@ -422,6 +440,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -433,6 +452,7 @@ class User {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -444,6 +464,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   timeZone!: string;
 
@@ -471,6 +492,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -482,6 +504,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -513,6 +536,7 @@ class User {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   weekStart!: string;
 

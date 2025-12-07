@@ -11,14 +11,18 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
+
 import {
   IsInt,
+  Max,
   IsOptional,
   ValidateNested,
   IsString,
+  MaxLength,
   IsBoolean,
   IsEnum,
 } from "class-validator";
+
 import { BookingWhereUniqueInput } from "../../booking/base/BookingWhereUniqueInput";
 import { Type } from "class-transformer";
 import { IsJSONValue } from "../../validators";
@@ -33,6 +37,7 @@ class PaymentUpdateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -56,6 +61,7 @@ class PaymentUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -77,6 +83,7 @@ class PaymentUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -88,6 +95,7 @@ class PaymentUpdateInput {
     type: Number,
   })
   @IsInt()
+  @Max(99999999999)
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
@@ -132,6 +140,7 @@ class PaymentUpdateInput {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,

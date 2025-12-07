@@ -29,6 +29,7 @@ import { WorkflowStepModule } from "./workflowStep/workflowStep.module";
 import { WorkflowModule } from "./workflow/workflow.module";
 import { WorkflowsOnEventTypeModule } from "./workflowsOnEventType/workflowsOnEventType.module";
 import { WorkflowReminderModule } from "./workflowReminder/workflowReminder.module";
+import { FdfdModule } from "./fdfd/fdfd.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -71,6 +72,7 @@ import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
     WorkflowModule,
     WorkflowsOnEventTypeModule,
     WorkflowReminderModule,
+    FdfdModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

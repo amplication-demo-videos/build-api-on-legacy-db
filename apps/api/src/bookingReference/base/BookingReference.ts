@@ -17,6 +17,7 @@ import {
   IsOptional,
   IsBoolean,
   IsString,
+  MaxLength,
   IsInt,
 } from "class-validator";
 import { Type } from "class-transformer";
@@ -48,6 +49,7 @@ class BookingReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -67,6 +69,7 @@ class BookingReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -78,6 +81,7 @@ class BookingReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -89,6 +93,7 @@ class BookingReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @IsOptional()
   @Field(() => String, {
     nullable: true,
@@ -100,6 +105,7 @@ class BookingReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   typeField!: string;
 
@@ -108,6 +114,7 @@ class BookingReference {
     type: String,
   })
   @IsString()
+  @MaxLength(256)
   @Field(() => String)
   uid!: string;
 }

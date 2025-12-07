@@ -13,14 +13,8 @@ import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const ApiKeyList = (props: ListProps): React.ReactElement => {
   return (
-    <List
-      {...props}
-      bulkActionButtons={false}
-      title={"ApiKeys"}
-      perPage={50}
-      pagination={<Pagination />}
-    >
-      <Datagrid rowClick="show">
+    <List {...props} title={"ApiKeys"} perPage={50} pagination={<Pagination />}>
+      <Datagrid rowClick="show" bulkActionButtons={false}>
         <ReferenceField
           label="App Field"
           source="appmodel.id"
@@ -36,7 +30,7 @@ export const ApiKeyList = (props: ListProps): React.ReactElement => {
         <TextField label="Note" source="note" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
-        </ReferenceField>
+        </ReferenceField>{" "}
       </Datagrid>
     </List>
   );

@@ -29,10 +29,12 @@ export const CredentialCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceArrayInput
           source="destinationCalendars"
           reference="DestinationCalendar"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={DestinationCalendarTitle} />
+          <SelectArrayInput
+            optionText={DestinationCalendarTitle}
+            parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+            format={(value: any) => value && value.map((v: any) => v.id)}
+          />
         </ReferenceArrayInput>
         <div />
         <TextInput label="Type Field" source="typeField" />
